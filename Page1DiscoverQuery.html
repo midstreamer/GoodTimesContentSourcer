@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="display"> <!-- Div to generate DOM objects in -->
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js">
+    </script><!-- moment.js cdn -->
+    
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script> <!-- jquery cdn -->
+    
+    
+    <script>
+
+    var currentDate = new Date("2018-02-09");
+    currentDate = moment(currentDate).format("YYYY-MM-DD");
+
+    console.log(currentDate);
+
+    var filteredRes = [];
+      
+      $.ajax({
+          url: 'https://api.themoviedb.org/3/discover/movie?api_key=6bb0a75f85c928245a8216e455d2280b&language=en-US&region=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&release_date.gte=' + currentDate, // Calls for movies from recent year
+          method: 'GET',
+          success: function (data) {
+              console.log(data)
+          }
+      }).then(function (res){
+          for(i=0; i<res.results.length; i++){
+                var defaultInfo = res.results[i];
+
+                $(defaultInfo).push(filteredRes);
+                console.log(filteredRes);
+
+                // var topTwelve = defaultInfo.slice(0, 11);
+                
+                // console.log(topTwelve);
+            };
+      });
+    </script>
+</body>
+</html>
