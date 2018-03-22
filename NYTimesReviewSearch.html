@@ -18,54 +18,54 @@
 
     <div class="container">
         <h1>New York Times Article Search</h1>
+<div><input type="Search" id=mySearch placeholder="Search.."></div>
 
-        <!-- Aeticles will get dumped here -->
+        <!-- Review information will get dumped here -->
         <div id="articles-view"></div>
         <div class="title"></div>
         <div class="snippet"></div>
         <div class="pubDate"></div>
         <div class="arthur"></div>
-        <!-- Button triggers NYTimes Article Search-->
-        <input id="article-search" type="submit" value="NYTimes Article Search">
-        </form>
+        
+
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript">
 
-            var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+            var url = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
             url += '?' + $.param({
                 'api-key': "386607bb9b9e4ed39bea6265563b90a3",
-                "q": "mindfulness"
+                'query': "black panther"
             });
             $.ajax({
                 url: url,
                 method: 'GET',
             })
-            
-            // We store all of the retrieved data inside of an object called "response"
-            .then(function (result) {
 
-                // Log the queryURL
-                for (var i = 0; i < result.response.docs.length; i++){
-                console.log(url);
-                console.log(result);
-                console.log(result.response.docs[i].headline.main);
-                console.log(result.response.docs[i].snippet);
-                console.log(result.response.docs[i].pub_date);
-               
-                }
+                // We store all of the retrieved data inside of an object called "response"
+                .then(function (result) {
 
-                // Log the resulting object
-                console.log(result);
+                    // Log the queryURL
+                    for (var i = 0; i < result.results.length; i++) {
+                        console.log(result.results[i].display_title);
+                        //console.log(result);
+                        console.log(result.results[i].headline);
+                        console.log(result.results[i].link.url);
+                        console.log(result.results[i].summary_short);
+                        console.log(result.results[i].mpaa_rating);
+                        console.log(result.results[i].link.suggested_link_text);
 
-                for (var i = 0; i < result.response.docs.length; i++){
-                // Transfer content to HTML
-                $(".title").text("Article Title: " + result.response.docs[i].headline.main);
-                $(".snippet").text("Article Snippet: " + result.response.docs[i].snippet);
-                $(".pubDate").text("Publish Date: " + result.response.docs[i].pub_date);
-               
-                }
-            });
+                    }
+
+                    // Log the resulting object
+                    console.log(result);
+
+                    //for (var i = 0; i < result.results.length; i++) {
+                        // Transfer content to HTML
+                        $(".title").text("Title: " + result.results[0].headline);
+                        $(".snippet").text("Article Snippet: " + result.results[0].summary_short);
+                        $(".pubDate").text("Rating: " + result.results[0].mpaa_rating);
+                    });
 
         </script>
     </div>
