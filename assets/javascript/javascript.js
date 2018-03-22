@@ -115,13 +115,10 @@
                    
                     for (i=0; i<res.results.length; i++){
                         var dataAccess = res.results[i];
-<<<<<<< HEAD
                         console.log(dataAccess.popularity)
                         if (dataAccess.popularity < 3.0) {
-=======
                         console.log(res.results[i].popularity)
                         if (res.results[i].popularity < 3.5 || res.results[i].overview == "") {
->>>>>>> f448fb90e8bf38c0aac2db28fe2c28d6a9b20d23
                             res.results.splice(i,1);
                             continue;
                         }
@@ -132,13 +129,10 @@
                             $("#title"+contentIndex+"").text(res.results[i].name);
                         }
 
-<<<<<<< HEAD
                         $("#title"+contentIndex+"").text(dataAccess.name);
                       
                         $("#content"+contentIndex+"").text(dataAccess.overview);
-=======
                         $("#content"+contentIndex+"").text(res.results[i].overview);
->>>>>>> f448fb90e8bf38c0aac2db28fe2c28d6a9b20d23
                         
                         $("#cardImg"+contentIndex+"").attr("src","http://image.tmdb.org/t/p/w200/"+dataAccess.poster_path);
                         
