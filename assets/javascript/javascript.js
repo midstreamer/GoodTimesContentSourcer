@@ -1,10 +1,10 @@
-                                // pseudocode
-                                // page 1
+// pseudocode
+// page 1
 
-                                // A.user input for keyword search(TOMD AJAX) 
-                                // search bar (default= Title order by popularity on search)
-                                // 1. event listener for user input (input validation)
-                                    //Event listener
+// A.user input for keyword search(TOMD AJAX) 
+// search bar (default= Title order by popularity on search)
+// 1. event listener for user input (input validation)
+    //Event listener
     // var contentIndex = 0;
     // var queryInput = "";
     // $("#search").keypress(function(e) {
@@ -16,9 +16,9 @@
     //         contentIndex = 0;
             
         
-                                // Ajax parameter (q=) variable 
-                                // 2. (a)store user input in varaiable.
-                                //    (b)send search term to database
+// Ajax parameter (q=) variable 
+// 2. (a)store user input in varaiable.
+//    (b)send search term to database
 
 //--------------------THIS IS THE NYT VERSION OF CODE----------------
 // var url = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
@@ -62,9 +62,9 @@
 
                     
 //--------------------------------------------------------------
-            $(document).ready(function() {
+ $(document).ready(function() {
 
-            // ---------------------------------------------------------------
+// ---------------------------------------------------------------
     var contentIndex = 0;
     var queryInput = "";
     $("#search").keypress(function(e) {
@@ -113,31 +113,23 @@
                     }  
                 }).then(function(res){
                    
-                    
-        
                     for (i=0; i<res.results.length; i++){
                         var dataAccess = res.results[i];
-                        console.log(res.results[i].popularity)
-                        if (res.results[i].popularity < 3.0) {
+                        console.log(dataAccess.popularity)
+                        if (dataAccess.popularity < 3.0) {
                             res.results.splice(i,1);
                             continue;
                         }
 
-                        $("#title"+contentIndex+"").text(res.results[i].name);
+                        $("#title"+contentIndex+"").text(dataAccess.name);
                       
-                        $("#content"+contentIndex+"").text(res.results[i].overview);
+                        $("#content"+contentIndex+"").text(dataAccess.overview);
                         
-                        $("#cardImg"+contentIndex+"").attr("src","http://image.tmdb.org/t/p/w200/"+res.results[i].poster_path);
+                        $("#cardImg"+contentIndex+"").attr("src","http://image.tmdb.org/t/p/w200/"+dataAccess.poster_path);
                         
 
                         contentIndex++;
 
-
-
-
-
-
-        
                         // if(dataAccess.media_type === 'movie'){
         
                         //     filtered.push(dataAccess)
@@ -156,27 +148,22 @@
                             //     };
                             // };
         
-                                            // if(language){
-                                            //     if(dataAccess.original_language === language){
-                                            //         filtered.push(dataAccess);
-                                            //     };
-                                            // }else{
-                                            //     for(k=0;k<filtered.length;k++){
-                                            //         if(filtered[k] != dataAccess){
-                                            //             filtered.push(dataAccess);
-                                            //         };
-                                            //     };
-                                            // };
-        
-                            
-                            
+                        // if(language){
+                        //     if(dataAccess.original_language === language){
+                        //         filtered.push(dataAccess);
+                        //     };
+                        // }else{
+                        //     for(k=0;k<filtered.length;k++){
+                        //         if(filtered[k] != dataAccess){
+                        //             filtered.push(dataAccess);
+                        //         };
+                        //     };
+                        // };
+           
                         };
                     });   
                 };
             
-            
-        
-        
             console.log(filtered);
         });
         //----------------------------------------------------------   
@@ -209,25 +196,21 @@
             // });
 
 //------------------------------------------------------------
-// AJAX call for default TMDB search items
+// AJAX call for default TMDB Discover items
 
-var currentDate = new Date("2018-02-09");
+    var currentDate = new Date("2018-02-09");   
     currentDate = moment(currentDate).format("YYYY-MM-DD");
     console.log(currentDate);
-    var filteredRes = [];
       
-      $.ajax({
-          url: 'https://api.themoviedb.org/3/discover/movie?api_key=6bb0a75f85c928245a8216e455d2280b&language=en-US&region=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&release_date.gte=' + currentDate, // Calls for movies from recent year
-          method: 'GET',
-          success: function (data) {
-              console.log(data)
-          }
-      }).then(function (res){
-          for(i=0; i<res.results.length; i++){
+    $.ajax({
+        url: 'https://api.themoviedb.org/3/discover/movie?api_key=6bb0a75f85c928245a8216e455d2280b&language=en-US&region=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&release_date.gte=' + currentDate, // Calls for most recent movies out
+        method: 'GET',
+        success: function (data) {
+            console.log(data)
+        }
+        }).then(function (res){
+            for(i=0; i<res.results.length; i++){
                 var defaultInfo = res.results[i];
-                // $(defaultInfo).push(filteredRes);
-                // console.log(filteredRes);
-                // var topTwelve = defaultInfo.slice(0, 11);
 
                 $("#title"+contentIndex+"").text(defaultInfo.title);
                       
@@ -237,9 +220,9 @@ var currentDate = new Date("2018-02-09");
                         
 
                 contentIndex++;
-                // console.log(topTwelve);
+                
             };
-      });
+        });
 
     });
 

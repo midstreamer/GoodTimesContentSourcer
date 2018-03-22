@@ -33,20 +33,29 @@
           url: 'https://api.themoviedb.org/3/discover/movie?api_key=6bb0a75f85c928245a8216e455d2280b&language=en-US&region=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&release_date.gte=' + currentDate, // Calls for movies from recent year
           method: 'GET',
           success: function (data) {
-              console.log(data)
+                console.log(data);
           }
       }).then(function (res){
           for(i=0; i<res.results.length; i++){
                 var defaultInfo = res.results[i];
 
                 $(defaultInfo).push(filteredRes);
-                console.log(filteredRes);
+
+                $.each(filteredRes.slice(0,11), function(i, data) {
+                    var ul_data = "<li><h3>"+ data.displayValue+ "</h3></li>";
+                    $("#display").append(ul_data);
+                });
+
+                
+                
 
                 // var topTwelve = defaultInfo.slice(0, 11);
                 
                 // console.log(topTwelve);
             };
       });
+
+      console.log(filteredRes);
     </script>
 </body>
 </html>
