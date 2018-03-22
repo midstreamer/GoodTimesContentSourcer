@@ -118,13 +118,17 @@
                     for (i=0; i<res.results.length; i++){
                         var dataAccess = res.results[i];
                         console.log(res.results[i].popularity)
-                        if (res.results[i].popularity < 3.0) {
+                        if (res.results[i].popularity < 3.5 || res.results[i].overview == "") {
                             res.results.splice(i,1);
                             continue;
                         }
+                        if (res.results[i].name == undefined) {
+                            console.log("This has no name; see title:"+res.results[i].name)
+                            $("#title"+contentIndex+"").text(res.results[i].title);
+                        } else {
+                            $("#title"+contentIndex+"").text(res.results[i].name);
+                        }
 
-                        $("#title"+contentIndex+"").text(res.results[i].name);
-                      
                         $("#content"+contentIndex+"").text(res.results[i].overview);
                         
                         $("#cardImg"+contentIndex+"").attr("src","http://image.tmdb.org/t/p/w200/"+res.results[i].poster_path);
@@ -132,12 +136,6 @@
 
                         contentIndex++;
 
-
-
-
-
-
-        
                         // if(dataAccess.media_type === 'movie'){
         
                         //     filtered.push(dataAccess)
