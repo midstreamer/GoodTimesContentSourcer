@@ -180,35 +180,68 @@
             console.log(filtered);
         });
         //----------------------------------------------------------   
-        //ajax call for default search items (most popular posts regarding movies) on page load
+        //ajax call for NYT default search items (most popular posts regarding movies) on page load
 
-            var url = "https://api.nytimes.com/svc/mostpopular/v2/mostviewed/Movies/1.json";
-                url += '?' + $.param({
-                'api-key': "386607bb9b9e4ed39bea6265563b90a3"
-                });
-                $.ajax({
-                url: url,
-                method: 'GET',
-                })
+            // var url = "https://api.nytimes.com/svc/mostpopular/v2/mostviewed/Movies/1.json";
+            //     url += '?' + $.param({
+            //     'api-key': "386607bb9b9e4ed39bea6265563b90a3"
+            //     });
+            //     $.ajax({
+            //     url: url,
+            //     method: 'GET',
+            //     })
 
-                .then(function (result) {
-                    // Log the resulting object
-                    console.log(result);
-                    for (var i = 0; i < result.results.length; i++) {
-                        // Transfer content to HTML
-                        $("#title"+contentIndex+"").text(result.results[i].title);
+            //     .then(function (result) {
+            //         // Log the resulting object
+            //         console.log(result);
+            //         for (var i = 0; i < result.results.length; i++) {
+            //             // Transfer content to HTML
+            //             $("#title"+contentIndex+"").text(result.results[i].title);
                       
-                        $("#content"+contentIndex+"").text(result.results[i].abstract);
+            //             $("#content"+contentIndex+"").text(result.results[i].abstract);
                         
-                        $("#cardImg"+contentIndex+"").attr("src", result.results[i].media["0"]["media-metadata"][1].url);
+            //             $("#cardImg"+contentIndex+"").attr("src", result.results[i].media["0"]["media-metadata"][1].url);
                         
 
-                        contentIndex++;
-                    }
-                });
-            });
+            //             contentIndex++;
+            //         }
+            //     });
+            // });
 
+//------------------------------------------------------------
+// AJAX call for default TMDB search items
 
+var currentDate = new Date("2018-02-09");
+    currentDate = moment(currentDate).format("YYYY-MM-DD");
+    console.log(currentDate);
+    var filteredRes = [];
+      
+      $.ajax({
+          url: 'https://api.themoviedb.org/3/discover/movie?api_key=6bb0a75f85c928245a8216e455d2280b&language=en-US&region=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&release_date.gte=' + currentDate, // Calls for movies from recent year
+          method: 'GET',
+          success: function (data) {
+              console.log(data)
+          }
+      }).then(function (res){
+          for(i=0; i<res.results.length; i++){
+                var defaultInfo = res.results[i];
+                // $(defaultInfo).push(filteredRes);
+                // console.log(filteredRes);
+                // var topTwelve = defaultInfo.slice(0, 11);
+
+                $("#title"+contentIndex+"").text(defaultInfo.title);
+                      
+                $("#content"+contentIndex+"").text(defaultInfo.overview);
+                        
+                $("#cardImg"+contentIndex+"").attr("src","http://image.tmdb.org/t/p/w200/"+defaultInfo.poster_path);
+                        
+
+                contentIndex++;
+                // console.log(topTwelve);
+            };
+      });
+
+    });
 
 // B. TABS for different media
 // dropdown search parameter(filter with radio buttons options). onclick show/hide table
