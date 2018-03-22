@@ -3,6 +3,9 @@
 
 <head>
   <meta charset="utf-8">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"><!--  -->
   <title>YouTube Search</title>
   <style type="text/css">
     button,
@@ -43,7 +46,7 @@
         var URL = "https://www.googleapis.com/youtube/v3/search?"
         var part = "&part=snippet&q=" //snippet is the default setting, but it gives us the information that we looking for 
         var q = "movie" //searching for music, we will change this with the uer input below
-        var results = "&maxResults=5" //results can be 0 to 50 
+        var results = "&maxResults=10" //results can be 0 to 50 
         var order = "&order=relevance" //listed in order of relevance 
         var type = "&type=video"  //this has to be (channel, playlist, or video)
         var videoSyndicated = "&videoSyndicated=true" //if true this only returns videos that can be played outside of youtube 
@@ -128,7 +131,7 @@
           // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
           var a = $("<button>");
           // Adding a class of movie-btn to our button
-          a.addClass("movie-btn");
+          a.addClass("movie-btn waves-effect waves-light btn-large");
           // Adding a data-attribute
           a.attr("data-name", categories[i]);
           // Providing the initial button text
