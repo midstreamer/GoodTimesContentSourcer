@@ -52,9 +52,13 @@
         var videoSyndicated = "&videoSyndicated=true" //if true this only returns videos that can be played outside of youtube 
         var videoEmbeddable = "&videoEmbeddable=true" //only returns embeddable videos
         var videoLicense = "&videoLicense=creativeCommon" //only returns videos with a creative common license
-        //var videoCategory = "&videoCategoryId=30" //category 30 is movies 
+        // var videoCategory = "&videoCategoryId=30" //category 30 is movies 
         var APIkey = "&key=AIzaSyBP43ErpwhWXmxgZehpzg3e0obiYKKNHfY";
         var queryURL = URL + part + q + results + order + type + videoSyndicated + videoEmbeddable + videoLicense + APIkey
+
+        // https://www.googleapis.com/youtube/v3/search?&part=snippet&maxResults=30
+        // &order=relevance&type=video&videoCaption=any&videoCategoryId=10
+        // &key=AIzaSyBP43ErpwhWXmxgZehpzg3e0obiYKKNHfY
 
         // Creating an AJAX call for the specific button being clicked
         $.ajax({

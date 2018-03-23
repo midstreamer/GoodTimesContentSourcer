@@ -27,7 +27,7 @@ nav .input-field {
 }
 
 #filter {
-
+    margin-top: 20px;
 }
 
 #welcome {
@@ -38,15 +38,8 @@ nav .input-field {
     margin-top: 50px;
 }
 
-#sub {
-    background-image: url(../images/bookstore-slide-2MCD-superJumbo.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-}
-
 #results {
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 .card-content {
@@ -56,4 +49,14 @@ nav .input-field {
 
 img {
     width: 100%;
+}
+
+#filter:hover {
+    cursor: pointer;
+    color: #26a69a;
+}
+
+td:hover {
+    cursor: pointer;
+    color: #26a69a;
 }

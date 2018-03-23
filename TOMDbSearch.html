@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TOMD Test</title>
+</head>
+<body>
+    <container>
+        <div id="buttons">
+            <input id="keyword" placeholder="keyword"><br>
+            <input id="date" placeholder="0000yr.gte"><br>
+            <input id="language" placeholder="en-US"><br>
+            <!-- <input id="rating" placeholder="pg-13"><br> -->
+            <input id="genre" placeholder="Fantasy"><br>
+
+            
+    
+            <button id="sbut" type="button"></button>
+        </div>  
+
+        <div id="display">
+        </div>
+    </container>
+
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function() {
+            
+            var filtered = [];
+        
+            var genreURL = 'https://api.themoviedb.org/3/genre/movie/list?api_key=6bb0a75f85c928245a8216e455d2280b&language=en-US';
+        
+            var genreData = function(){
+                var results = null;
+                $.ajax({
+                    async: false,
+                    type: "GET",
+                    global: false,
+                    dataType: 'json',
+                    url: genreURL,
+                    success: function(data){
+                        results = data;
+                    }
+                });
+                return results;
+            }();
+        
+            
+            $("#sbut").on("click", function(e){
+        
+                e.preventDefault();
+        
+                var url = 'https://api.themoviedb.org/3/search/multi'
+                var sKey = $('#keyword').val().trim();
+                var q = '&query=' + sKey;
+                var aKey = '?api_key=6bb0a75f85c928245a8216e455d2280b';
+                var lang = '&language=en-US';
+                var onPage = 1;
+                var pageNum = '&page=' + onPage;
+                var adult = '&include_adult=false';
+                
+                var queryURL = url + aKey + lang + q + pageNum + adult;
+                
+                $.ajax({
+                    url: queryURL,
+                    method: 'GET',
+                    success: function(data){
+                        console.log(data);
+                    }  
+                }).then(function(res){
+                    var date = $('#date').val().trim();
+                    var language = $('#language').val().trim();
+                    
+        
+                    for (i=0; i<res.results.length; i++){
+                        var dataAccess = res.results[i];
+        
+                        if(dataAccess.media_type === 'movie'){
+        
+                            filtered.push(dataAccess)
+        
+                            if(date){
+                                if (dataAccess.release_date.slice(0, 4) >= date){
+                                filtered.push(dataAccess);
+                                };
+                            }else{
+                                for(k=0; k<filtered.length; k++){
+        
+                                    console.log(filtered[k]);
+                                    // if(filtered[k] != dataAccess){
+                                    //     filtered.push(dataAccess);
+                                    // };
+                                };
+                            };
+        
+                            // if(language){
+                            //     if(dataAccess.original_language === language){
+                            //         filtered.push(dataAccess);
+                            //     };
+                            // }else{
+                            //     for(k=0;k<filtered.length;k++){
+                            //         if(filtered[k] != dataAccess){
+                            //             filtered.push(dataAccess);
+                            //         };
+                            //     };
+                            // };
+        
+                            
+                            
+                        };
+                    };   
+                });
+            
+            });
+        
+        
+            console.log(filtered);
+        });
+ 
+    </script>
+
+    
+</body>
+</html>
+
+
+
+
+
+
+<!-- //////////////Stuff I've tried///////////////////////////////////////// -->
+
+
+    <!-- <script src="./iteration-search.js"></script> -->
+    <!-- <script src="./separate-search.js"></script> --> -->
+
+<!-- <input type="radio" id="date" value="date"> Date <input id="date-text" type="text" placeholder="0000yr.gte"> <br> <! add onchange with 'add date' function-->
+        
+<!-- <input type="radio" id="language" value="language"> Language <input id="language-text" type="text" placeholder="use two letter abbreviation"> <br> add onchange with 'add lang' function -->
+
+<!-- <input type="radio" id="genre" value="genre"> Genre <input id="genre-text" type="text" placeholder="GENRE ID FUNCTION"> <br> add onchange with 'add genre' function -->
+
+<!-- <input type="radio" id="rating" value="rating"> Rating <input id="rating-text" type="text" placeholder="pg-13"><br> add onchange with 'add rate' function --> 
+
+
+<!-- //  Stuff I've Tried ////////////////////////////////////////////////////
+
+////// To iterate through pages >>>>>
+
+//// 1 >>>>>>>>
+// for( i=1; i<res.total_pages.length; i++){
+//     // onPage++;
+    
+//     pageNum = '&page=' + onPage[i];
+    
+//     $.ajax({
+//         url: queryURL,
+//         method: 'GET',
+//         success: function(data){
+//             console.log(data);
+//         }
+//     }).then(function(resChild){
+
+//     });
+
+////// To store genre data to be called on in genFunc parameter >>>>
+
+//// 1 >>>>>>>>
+// function genreGet (data) {
+//     $.ajax({
+//         url: genreURL,
+//         method: 'GET',
+//         success: function(data){
+//             console.log(data);
+
+//             return data;
+//         } 
+//     }).then(function(genreRes){
+//         var genreD = genreRes.genres;
+
+//         for( j=0; j<genreD.length; j++){
+//             var genreDName = genreD[j].name;
+//             var genreDId = genreD[j].id;
+//         };
+//     });  
+// };
+
+//// 2 >>>>>>>>
+// jQuery.extend({
+//     genreGet: function(data) {
+//         var genreData = null;
+//         $.ajax({
+//             url: genreURL,
+//             type: 'GET',
+//             dataType: 'json',
+//             success: function(data) {
+//                 genreData = data;
+//             }
+//         });
+//        return genreData;
+//     }
+// });
+
+// var genreResults = $.getValues(data);
+// console.log(genreResults);
+
+
+
+// function genreI (){
+//     for(p=0;p<genreData.genres.length;p++){
+//         var genreID = genreData.genres[p].id;
+//         var genreName = genreData.genres[p].name;
+//     };
+// };
+
+// genreI();
+    
+
+// console.log(genreI);
+
+
+////// To create functions to call for parameter functionality >>>>
+
+//// 1 >>>>>>>>
+// function dateFunc () {
+//     var releaseDate = dataAccess.release_date;
+//     var releaseYr = releaseDate.slice(0, 4);
+    
+//     if($('#date-text') >= releaseYr){
+//         filtered.push(dataAccess);
+//     };
+// };
+
+//// 2 >>>>>>>>
+// function langFunc () {
+//     var originalLang = dataAccess.original_language;
+
+//     if($('#language-text') === originalLang){
+//         filtered.push(dataAccess);
+//     };
+// };
+
+// function genFunc () {
+    
+
+// };
+
+// function rateFunc () {
+
+// }; -->
