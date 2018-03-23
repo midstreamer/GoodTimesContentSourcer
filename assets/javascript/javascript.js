@@ -158,8 +158,8 @@ if (e.which == 13) { // When enter is pressed fire function
 
             for (i=0; i<res.results.length; i++){
                 var dataAccess = res.results[i];
-                console.log(res.results[i].popularity)
-                if (res.results[i].popularity < 3.5 || res.results[i].overview == ""){
+                console.log(dataAccess.popularity)
+                if (dataAccess.popularity < 3.5 || dataAccess.overview == ""){
                     res.results.splice(i,1);
                     continue;
                 }
@@ -170,7 +170,16 @@ if (e.which == 13) { // When enter is pressed fire function
 
                 // Run above filters before Date/Genre
 
-                // Date Filter
+                //------------ Date Filter (Hardcode)-----------------
+                // var dateFrom = $(#dateinput1).val().trim();
+                //var dateTo = $(#dateinput2).val().trim();
+                
+                // if (dateFrom != ""){
+                //     if (dataAccess.release_date.slice(0,3) < dateFrom && dataAccess.release_date.slice(0,3) > dateTo){
+                //         res.results.splice(i,1);
+                //         continue;
+                //     };
+                // };
 
                 // Genre Filter
 
