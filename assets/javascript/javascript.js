@@ -159,6 +159,8 @@ if (e.which == 13) { // When enter is pressed fire function
                 
             for (i=0; i<12; i++){
 
+                var dataAccess = res.results[i];
+                //check that result exists; if not, iterate to next
                 if(res.results[i] == undefined) {
                     console.log("I am undefined")
                     continue;
@@ -166,17 +168,17 @@ if (e.which == 13) { // When enter is pressed fire function
                 console.log("1.0 I am i: "+i)
                 console.log("1. i am res.results.length:"+res.results.length)
                 console.log("I am res.results[i]: ", res.results[i])
-                var dataAccess = res.results[i];
                 console.log(res.results[i].popularity)
                 
-                
-                
+                //filter out all results that do not fit popularity requirement or has a blank overview section; iterate to next
                 if (res.results[i].popularity < 3.0 || res.results[i].overview == ""){
                     console.log("3. I am getting cut(1): "+res.results[i].title)
                     res.results.splice(i,1);
                     i -= 1;
                     continue;
                 }
+
+                //filter out results for all movie media types
                 if(dataAccess.media_type != 'movie'){
                     console.log("3. i am getting cut(2): "+res.results[i].title)
                     res.results.splice(i,1);
@@ -193,57 +195,23 @@ if (e.which == 13) { // When enter is pressed fire function
                     // Event listener for each button that responds to ID
                     // Iterate through genre IDs - dataAccess.media_types[i]
                     // If for each ID that compares to genre_ids of json object
-                        // If genre_ids != splice out results
+                    // If genre_ids != splice out results
 
-                // After filters if results are less than number of cards (undefined/null) hide extra cards
 
-            
+                //fill cards with title, overview, and image from JSON object
                 $("#title"+contentIndex+"").text(res.results[i].title);
                 
                 $("#content"+contentIndex+"").text(res.results[i].overview);
                 
                 $("#cardImg"+contentIndex+"").attr("src","http://image.tmdb.org/t/p/w200/"+res.results[i].poster_path);
                 
-                
-
-
+                //increase the content index for next iteration
                 contentIndex++;
-                console.log("5. contentindex: "+contentIndex)
-                // if(dataAccess.media_type === 'movie'){
-
-                //     filtered.push(dataAccess)
-
-                //     if(date){
-                //         if (dataAccess.release_date.slice(0, 4) >= date){
-                //         filtered.push(dataAccess);
-                //         };
-                //     }else{
-                //         for(k=0; k<filtered.length; k++){
-
-                //             console.log(filtered[k]);
-                                    // if(filtered[k] != dataAccess){
-                                    //     filtered.push(dataAccess);
-                                    // };
-                    //     };
-                    // };
-
-                                    // if(language){
-                                    //     if(dataAccess.original_language === language){
-                                    //         filtered.push(dataAccess);
-                                    //     };
-                                    // }else{
-                                    //     for(k=0;k<filtered.length;k++){
-                                    //         if(filtered[k] != dataAccess){
-                                    //             filtered.push(dataAccess);
-                                    //         };
-                                    //     };
-                                    // };
-
-                    
-                    
+                console.log("5. contentindex: "+contentIndex)    
                 }
                 
-                    //removes remaining cards if the search filter does not provide enough search results 
+                    //Hide extra cards; remove remaining cards if the search filter does not provide enough search results, less than number of cards (undefined/null) 
+                     
                     for (var j = 11; j >= res.results.length; --j) {
                         console.log("i am inside this for")
                         if (res.results.length < 12) {
@@ -254,11 +222,6 @@ if (e.which == 13) { // When enter is pressed fire function
                     }
             });   
         };
-    
-
-
-
-   
 });
 //----------------------------------------------------------   
 //ajax call for NYT default search items (most popular posts regarding movies) on page load
