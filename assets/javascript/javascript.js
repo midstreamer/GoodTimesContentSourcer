@@ -63,6 +63,16 @@
                     
 //--------------------------------------------------------------
 $(document).ready(function() {
+//function that renders buttons for years from 1930-2018
+
+function yearBtnRender() {
+
+
+
+
+}
+
+
 
 // AJAX call for default TMDB search items
 
@@ -124,6 +134,8 @@ if (e.which == 13) { // When enter is pressed fire function
         return results;
     }();
 
+    console.log(genreData);
+
         var url = 'https://api.themoviedb.org/3/search/multi'
         var q = '&query=' + queryInput;
         var aKey = '?api_key=6bb0a75f85c928245a8216e455d2280b';
@@ -147,17 +159,31 @@ if (e.which == 13) { // When enter is pressed fire function
             for (i=0; i<res.results.length; i++){
                 var dataAccess = res.results[i];
                 console.log(res.results[i].popularity)
-                if (res.results[i].popularity < 3.5 || res.results[i].overview == "") {
+                if (res.results[i].popularity < 3.5 || res.results[i].overview == ""){
                     res.results.splice(i,1);
                     continue;
                 }
-                if (res.results[i].name == undefined) {
-                    console.log("This has no name; see title:"+res.results[i].name)
-                    $("#title"+contentIndex+"").text(res.results[i].title);
-                } else {
-                    $("#title"+contentIndex+"").text(res.results[i].name);
+                if(dataAccess.media_type != 'movie'){
+                    res.results.splice(i,1);
+                    continue;
                 }
 
+                // Run above filters before Date/Genre
+
+                // Date Filter
+
+                // Genre Filter
+
+                    // Event listener for each button that responds to ID
+                    // Iterate through genre IDs - dataAccess.media_types[i]
+                    // If for each ID that compares to genre_ids of json object
+                        // If genre_ids != splice out results
+
+                // After filters if results are less than number of cards (undefined/null) hide extra cards
+
+            
+                $("#title"+contentIndex+"").text(res.results[i].title);
+                
                 $("#content"+contentIndex+"").text(res.results[i].overview);
                 
                 $("#cardImg"+contentIndex+"").attr("src","http://image.tmdb.org/t/p/w200/"+res.results[i].poster_path);
