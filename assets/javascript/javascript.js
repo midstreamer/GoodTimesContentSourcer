@@ -63,6 +63,16 @@
                     
 //--------------------------------------------------------------
 $(document).ready(function() {
+//function that renders buttons for years from 1930-2018
+
+function yearBtnRender() {
+
+
+
+
+}
+
+
 
 // AJAX call for default TMDB search items
 
@@ -78,7 +88,7 @@ $.ajax({
       console.log(data)
   }
 }).then(function (res){
-  for(i=0; i<res.results.length; i++){
+  for(i=0; i<12; i++){
         var defaultInfo = res.results[i];
         // $(defaultInfo).push(filteredRes);
         // console.log(filteredRes);
@@ -99,13 +109,15 @@ $.ajax({
 //-----------------------------------search version
 var contentIndex = 0;
 var queryInput = "";
+var searchResults;
 $("#search").keypress(function(e) {
 if (e.which == 13) { // When enter is pressed fire function
     event.preventDefault();
     queryInput = $("#search").val().trim();
-    console.log(queryInput);
+    console.log("queryinput: "+queryInput);
     $("#search").val('');
     contentIndex = 0;
+    $(".card").show();
 
     var genreURL = 'https://api.themoviedb.org/3/genre/movie/list?api_key=6bb0a75f85c928245a8216e455d2280b&language=en-US';
 
@@ -126,6 +138,8 @@ if (e.which == 13) { // When enter is pressed fire function
         return results;
     }();
 
+    console.log(genreData);
+
         var url = 'https://api.themoviedb.org/3/search/multi'
         var q = '&query=' + queryInput;
         var aKey = '?api_key=6bb0a75f85c928245a8216e455d2280b';
@@ -141,72 +155,93 @@ if (e.which == 13) { // When enter is pressed fire function
             method: 'GET',
             success: function(data){
                 console.log(data);
+                
             }  
         }).then(function(res){
-           
-            
+                
+            for (i=0; i<12; i++){
 
-            for (i=0; i<res.results.length; i++){
                 var dataAccess = res.results[i];
-                console.log(res.results[i].popularity)
-                if (res.results[i].popularity < 3.5 || res.results[i].overview == "") {
-                    res.results.splice(i,1);
+                //check that result exists; if not, iterate to next
+                if(res.results[i] == undefined) {
+                    console.log("I am undefined")
                     continue;
                 }
-                if (res.results[i].name == undefined) {
-                    console.log("This has no name; see title:"+res.results[i].name)
-                    $("#title"+contentIndex+"").text(res.results[i].title);
-                } else {
-                    $("#title"+contentIndex+"").text(res.results[i].name);
+                console.log("1.0 I am i: "+i)
+                console.log("1. i am res.results.length:"+res.results.length)
+                console.log("I am res.results[i]: ", res.results[i])
+<<<<<<< HEAD
+                var dataAccess = res.results[i];
+<<<<<<< HEAD
+                console.log(dataAccess.popularity)
+                if (dataAccess.popularity < 3.5 || dataAccess.overview == ""){
+=======
+=======
+>>>>>>> 53551c42c28482f078cb69bd24ff315b521589df
+                console.log(res.results[i].popularity)
+                
+                //filter out all results that do not fit popularity requirement or has a blank overview section; iterate to next
+                if (res.results[i].popularity < 3.0 || res.results[i].overview == ""){
+                    console.log("3. I am getting cut(1): "+res.results[i].title)
+>>>>>>> 4a98583e065eba9feaac89eba04137efc8b80a3c
+                    res.results.splice(i,1);
+                    i -= 1;
+                    continue;
                 }
 
+                //filter out results for all movie media types
+                if(dataAccess.media_type != 'movie'){
+                    console.log("3. i am getting cut(2): "+res.results[i].title)
+                    res.results.splice(i,1);
+                    i -= 1;
+                    continue;
+                }
+                console.log("4. filtered results=", res)
+                // Run above filters before Date/Genre
+
+                //------------ Date Filter (Hardcode)-----------------
+                // var dateFrom = $(#dateinput1).val().trim();
+                //var dateTo = $(#dateinput2).val().trim();
+                
+                // if (dateFrom != ""){
+                //     if (dataAccess.release_date.slice(0,3) < dateFrom && dataAccess.release_date.slice(0,3) > dateTo){
+                //         res.results.splice(i,1);
+                //         continue;
+                //     };
+                // };
+
+                // Genre Filter
+
+                    // Event listener for each button that responds to ID
+                    // Iterate through genre IDs - dataAccess.media_types[i]
+                    // If for each ID that compares to genre_ids of json object
+                    // If genre_ids != splice out results
+
+
+                //fill cards with title, overview, and image from JSON object
+                $("#title"+contentIndex+"").text(res.results[i].title);
+                
                 $("#content"+contentIndex+"").text(res.results[i].overview);
                 
                 $("#cardImg"+contentIndex+"").attr("src","http://image.tmdb.org/t/p/w200/"+res.results[i].poster_path);
                 
-
+                //increase the content index for next iteration
                 contentIndex++;
-
-                // if(dataAccess.media_type === 'movie'){
-
-                //     filtered.push(dataAccess)
-
-                //     if(date){
-                //         if (dataAccess.release_date.slice(0, 4) >= date){
-                //         filtered.push(dataAccess);
-                //         };
-                //     }else{
-                //         for(k=0; k<filtered.length; k++){
-
-                //             console.log(filtered[k]);
-                                    // if(filtered[k] != dataAccess){
-                                    //     filtered.push(dataAccess);
-                                    // };
-                    //     };
-                    // };
-
-                                    // if(language){
-                                    //     if(dataAccess.original_language === language){
-                                    //         filtered.push(dataAccess);
-                                    //     };
-                                    // }else{
-                                    //     for(k=0;k<filtered.length;k++){
-                                    //         if(filtered[k] != dataAccess){
-                                    //             filtered.push(dataAccess);
-                                    //         };
-                                    //     };
-                                    // };
-
-                    
-                    
-                };
+                console.log("5. contentindex: "+contentIndex)    
+                }
+                
+                    //Hide extra cards; remove remaining cards if the search filter does not provide enough search results, less than number of cards (undefined/null) 
+                     
+                    for (var j = 11; j >= res.results.length; --j) {
+                        console.log("i am inside this for")
+                        if (res.results.length < 12) {
+                            console.log("Res.results.length: ", res.results.length)
+                            console.log("I will hide card: "+j)
+                            $("#card"+j).hide();
+                        }
+                    }
             });   
         };
-    
-    
-
-
-   
 });
 //----------------------------------------------------------   
 //ajax call for NYT default search items (most popular posts regarding movies) on page load
