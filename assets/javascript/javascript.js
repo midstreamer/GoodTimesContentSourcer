@@ -88,7 +88,7 @@ $.ajax({
       console.log(data)
   }
 }).then(function (res){
-  for(i=0; i<res.results.length; i++){
+  for(i=0; i<12; i++){
         var defaultInfo = res.results[i];
         // $(defaultInfo).push(filteredRes);
         // console.log(filteredRes);
@@ -109,13 +109,15 @@ $.ajax({
 //-----------------------------------search version
 var contentIndex = 0;
 var queryInput = "";
+var searchResults;
 $("#search").keypress(function(e) {
 if (e.which == 13) { // When enter is pressed fire function
     event.preventDefault();
     queryInput = $("#search").val().trim();
-    console.log(queryInput);
+    console.log("queryinput: "+queryInput);
     $("#search").val('');
     contentIndex = 0;
+    $(".card").show();
 
     var genreURL = 'https://api.themoviedb.org/3/genre/movie/list?api_key=6bb0a75f85c928245a8216e455d2280b&language=en-US';
 
@@ -151,23 +153,42 @@ if (e.which == 13) { // When enter is pressed fire function
             method: 'GET',
             success: function(data){
                 console.log(data);
+                
             }  
         }).then(function(res){
-           
-            
+                
+            for (i=0; i<12; i++){
 
-            for (i=0; i<res.results.length; i++){
+                if(res.results[i] == undefined) {
+                    console.log("I am undefined")
+                    continue;
+                }
+                console.log("1.0 I am i: "+i)
+                console.log("1. i am res.results.length:"+res.results.length)
+                console.log("I am res.results[i]: ", res.results[i])
                 var dataAccess = res.results[i];
+<<<<<<< HEAD
                 console.log(dataAccess.popularity)
                 if (dataAccess.popularity < 3.5 || dataAccess.overview == ""){
+=======
+                console.log(res.results[i].popularity)
+                
+                
+                
+                if (res.results[i].popularity < 3.0 || res.results[i].overview == ""){
+                    console.log("3. I am getting cut(1): "+res.results[i].title)
+>>>>>>> 4a98583e065eba9feaac89eba04137efc8b80a3c
                     res.results.splice(i,1);
+                    i -= 1;
                     continue;
                 }
                 if(dataAccess.media_type != 'movie'){
+                    console.log("3. i am getting cut(2): "+res.results[i].title)
                     res.results.splice(i,1);
+                    i -= 1;
                     continue;
                 }
-
+                console.log("4. filtered results=", res)
                 // Run above filters before Date/Genre
 
                 //------------ Date Filter (Hardcode)-----------------
@@ -197,9 +218,11 @@ if (e.which == 13) { // When enter is pressed fire function
                 
                 $("#cardImg"+contentIndex+"").attr("src","http://image.tmdb.org/t/p/w200/"+res.results[i].poster_path);
                 
+                
+
 
                 contentIndex++;
-
+                console.log("5. contentindex: "+contentIndex)
                 // if(dataAccess.media_type === 'movie'){
 
                 //     filtered.push(dataAccess)
@@ -232,11 +255,21 @@ if (e.which == 13) { // When enter is pressed fire function
 
                     
                     
-                };
+                }
+                
+                    //removes remaining cards if the search filter does not provide enough search results 
+                    for (var j = 11; j >= res.results.length; --j) {
+                        console.log("i am inside this for")
+                        if (res.results.length < 12) {
+                            console.log("Res.results.length: ", res.results.length)
+                            console.log("I will hide card: "+j)
+                            $("#card"+j).hide();
+                        }
+                    }
             });   
         };
     
-    
+
 
 
    
