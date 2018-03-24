@@ -152,6 +152,7 @@ if (e.which == 13) { // When enter is pressed fire function
                     continue;
                 }
                 console.log("4. filtered results=", res)
+
                 // Run above filters before Date/Genre
 
                 //------------ Date Filter (Hardcode)-----------------
@@ -198,6 +199,27 @@ if (e.which == 13) { // When enter is pressed fire function
             });   
         };
 });
+
+// Event Listener for Card buttons link to page 3
+    $('#btn'+contentIndex).on('click', function(){
+        location.href='../more-info.html';
+
+        
+
+
+
+
+
+
+    });
+
+
+
+
+
+
+
+
 //----------------------------------------------------------   
 //ajax call for NYT default search items (most popular posts regarding movies) on page load
 
