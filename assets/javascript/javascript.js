@@ -124,6 +124,7 @@ if (e.which == 13) { // When enter is pressed fire function
     var genreURL = 'https://api.themoviedb.org/3/genre/movie/list?api_key=6bb0a75f85c928245a8216e455d2280b&language=en-US';
 
     var genreData = function(){
+        
         var results = null;
         $.ajax({
             async: false,
@@ -133,6 +134,7 @@ if (e.which == 13) { // When enter is pressed fire function
             url: genreURL,
             success: function(data){
                 results = data;
+                
             }
         });
         return results;
@@ -170,11 +172,20 @@ if (e.which == 13) { // When enter is pressed fire function
                 console.log("1.0 I am i: "+i)
                 console.log("1. i am res.results.length:"+res.results.length)
                 console.log("I am res.results[i]: ", res.results[i])
+<<<<<<< HEAD
+                var dataAccess = res.results[i];
+<<<<<<< HEAD
+                console.log(dataAccess.popularity)
+                if (dataAccess.popularity < 3.5 || dataAccess.overview == ""){
+=======
+=======
+>>>>>>> 53551c42c28482f078cb69bd24ff315b521589df
                 console.log(res.results[i].popularity)
                 
                 //filter out all results that do not fit popularity requirement or has a blank overview section; iterate to next
                 if (res.results[i].popularity < 3.0 || res.results[i].overview == ""){
                     console.log("3. I am getting cut(1): "+res.results[i].title)
+>>>>>>> 4a98583e065eba9feaac89eba04137efc8b80a3c
                     res.results.splice(i,1);
                     i -= 1;
                     continue;
@@ -190,7 +201,16 @@ if (e.which == 13) { // When enter is pressed fire function
                 console.log("4. filtered results=", res)
                 // Run above filters before Date/Genre
 
-                // Date Filter
+                //------------ Date Filter (Hardcode)-----------------
+                // var dateFrom = $(#dateinput1).val().trim();
+                //var dateTo = $(#dateinput2).val().trim();
+                
+                // if (dateFrom != ""){
+                //     if (dataAccess.release_date.slice(0,3) < dateFrom && dataAccess.release_date.slice(0,3) > dateTo){
+                //         res.results.splice(i,1);
+                //         continue;
+                //     };
+                // };
 
                 // Genre Filter
 

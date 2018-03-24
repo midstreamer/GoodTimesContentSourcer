@@ -45,8 +45,14 @@
         var categories = $(this).attr("data-name");
         var URL = "https://www.googleapis.com/youtube/v3/search?"
         var part = "&part=snippet&q=" //snippet is the default setting, but it gives us the information that we looking for 
+<<<<<<< HEAD
         var q = "movie" //searching for music, we will change this with the uer input below
         var results = "&maxResults=10" //results can be 0 to 50 
+=======
+        var trailers = "trailers"
+        var q = "movie" + trailers //searching for music, we will change this with the uer input below
+        var results = "&maxResults=5" //results can be 0 to 50 
+>>>>>>> d3fc395a5970ef2846664b49eff1ff13b1aa2b26
         var order = "&order=relevance" //listed in order of relevance 
         var type = "&type=video"  //this has to be (channel, playlist, or video)
         var videoSyndicated = "&videoSyndicated=true" //if true this only returns videos that can be played outside of youtube 
