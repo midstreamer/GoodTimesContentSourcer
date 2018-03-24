@@ -172,20 +172,15 @@ if (e.which == 13) { // When enter is pressed fire function
                 console.log("1.0 I am i: "+i)
                 console.log("1. i am res.results.length:"+res.results.length)
                 console.log("I am res.results[i]: ", res.results[i])
-<<<<<<< HEAD
+
                 var dataAccess = res.results[i];
-<<<<<<< HEAD
-                console.log(dataAccess.popularity)
-                if (dataAccess.popularity < 3.5 || dataAccess.overview == ""){
-=======
-=======
->>>>>>> 53551c42c28482f078cb69bd24ff315b521589df
+
                 console.log(res.results[i].popularity)
                 
                 //filter out all results that do not fit popularity requirement or has a blank overview section; iterate to next
                 if (res.results[i].popularity < 3.0 || res.results[i].overview == ""){
                     console.log("3. I am getting cut(1): "+res.results[i].title)
->>>>>>> 4a98583e065eba9feaac89eba04137efc8b80a3c
+
                     res.results.splice(i,1);
                     i -= 1;
                     continue;
