@@ -110,6 +110,7 @@ if (e.which == 13) { // When enter is pressed fire function
     var genreURL = 'https://api.themoviedb.org/3/genre/movie/list?api_key=6bb0a75f85c928245a8216e455d2280b&language=en-US';
 
     var genreData = function(){
+        
         var results = null;
         $.ajax({
             async: false,
@@ -119,6 +120,7 @@ if (e.which == 13) { // When enter is pressed fire function
             url: genreURL,
             success: function(data){
                 results = data;
+                
             }
         });
         return results;

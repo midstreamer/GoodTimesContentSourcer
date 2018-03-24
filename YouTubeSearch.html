@@ -42,7 +42,8 @@
         var categories = $(this).attr("data-name");
         var URL = "https://www.googleapis.com/youtube/v3/search?"
         var part = "&part=snippet&q=" //snippet is the default setting, but it gives us the information that we looking for 
-        var q = "movie" //searching for music, we will change this with the uer input below
+        var trailers = "trailers"
+        var q = "movie" + trailers //searching for music, we will change this with the uer input below
         var results = "&maxResults=5" //results can be 0 to 50 
         var order = "&order=relevance" //listed in order of relevance 
         var type = "&type=video"  //this has to be (channel, playlist, or video)
