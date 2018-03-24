@@ -21,10 +21,12 @@
                                 //    (b)send search term to database
 
 $(document).ready(function() {
-//function that renders buttons for years from 1930-2018
 
 $('.dropdown-trigger').dropdown();
 
+$('select').formSelect();
+
+//function that renders buttons for years from 1930-2018
 function yearBtnRender() {
 
 
