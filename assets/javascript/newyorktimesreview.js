@@ -1,4 +1,8 @@
+document.ready(function() {
 
+
+
+contentIndex = 0;
 
 var url = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
             url += '?' + $.param({
@@ -36,4 +40,4 @@ var url = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
                     }
                 });
                 }
-            });
+      
