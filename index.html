@@ -12,11 +12,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js">
     </script>
     <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <!-- CSS -->
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Pacifico|Raleway" rel="stylesheet">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="./assets/images/CClogo.png" />
     <title>Books & more</title>
@@ -27,7 +28,7 @@
         <div class="navbar-fixed">
             <nav class="nav-extended">
                 <div class="nav-wrapper teal">
-                    <a href="#!" class="brand-logo center">Culture Curator</a>
+                    <!-- <a href="#!" class="brand-logo center">Culture Curator</a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse">
                         <i class="material-icons">menu</i>
                     </a>
@@ -48,7 +49,7 @@
                         </li>
                     </ul>
                 </div>
-
+ -->
                 <div class="nav-content">
                     <form>
                         <div class="input-field teal lighten-1">
@@ -66,58 +67,53 @@
         </div>
     </header>
 
+ <div id="welcome" class="section white">
+
+            <div id="filter" class="row">
+                <div class="col l2">
+                    <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Filter
+                        <i class="material-icons right">filter_list
+                        </i>
+                    </a>
+
+                    <!-- Dropdown Structure -->
+                    <ul id='dropdown1' class='dropdown-content'>
+                        <li>
+                            <a href="#!">one</a>
+                        </li>
+                        <li>
+                            <a href="#!">two</a>
+                        </li>
+                        <li class="divider" tabindex="-1"></li>
+                        <li>
+                            <a href="#!">three</a>
+                        </li>
+                        <li>
+                            <a href="#!">
+                                <i class="material-icons">view_module</i>four</a>
+                        </li>
+                        <li>
+                            <a href="#!">
+                                <i class="material-icons">cloud</i>five</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="welcome" class="row">
+
+                <div class="col s12">
+                    <h1>Welcome to Culture Curator</h1>
+                    <p>We want to help you find your new favorite thing.</p>
+                </div>
+
+            </div>
+        </div>
+
     <section id="main">
 
-        <!-- <div id="filter" class="row">
-
-            <div class="col l1 s1 valign-wrapper">
-                <p class="right">Filter</p>
-                <i class="material-icons right">filter_list
-                </i>
-            </div>
-        </div> -->
-        <div id="filter" class="row">
-            <div class="col l2">
-                <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Filter
-                    <i class="material-icons right">filter_list
-                    </i>
-                </a>
-
-                <!-- Dropdown Structure -->
-                <ul id='dropdown1' class='dropdown-content'>
-                    <li>
-                        <a href="#!">one</a>
-                    </li>
-                    <li>
-                        <a href="#!">two</a>
-                    </li>
-                    <li class="divider" tabindex="-1"></li>
-                    <li>
-                        <a href="#!">three</a>
-                    </li>
-                    <li>
-                        <a href="#!">
-                            <i class="material-icons">view_module</i>four</a>
-                    </li>
-                    <li>
-                        <a href="#!">
-                            <i class="material-icons">cloud</i>five</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div id="welcome" class="row">
-
-            <div class="col s12">
-                <h1>Welcome text</h1>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-            </div>
-
-        </div>
-
         <div class="row">
-            <div class="col s12 m6 l3">
+            <div class="col s12 m6 l3 offset-l1">
                 <div class="col s12">
                     <div class="card">
                         <div class="card-image">
@@ -167,8 +163,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col s12 m6 l3">
                 <div class="col s12">
                     <div class="card">
                         <div class="card-image">
@@ -184,7 +178,8 @@
                         </div>
                     </div>
                 </div>
-
+            </div>
+            <div class="col s12 m6 l3">
                 <div class="col s12">
                     <div class="card">
                         <div class="card-image">
@@ -216,8 +211,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col s12 m6 l3">
                 <div class="col s12">
                     <div class="card">
                         <div class="card-image">
@@ -249,7 +242,8 @@
                         </div>
                     </div>
                 </div>
-
+            </div>
+            <div class="col s12 m6 l3">
                 <div class="col s12">
                     <div class="card">
                         <div class="card-image">
@@ -317,28 +311,16 @@
             </div>
         </div>
 
-        <div class="section white">
+        <!-- <div class="section white">
             <div class="row container">
                 <h2 class="header">Lorem ipsum</h2>
                 <p class="grey-text text-darken-3 lighten-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate, odit? Accusamus tempora cum perspiciatis,
                     libero dignissimos beatae est rerum autem sed temporibus ducimus voluptates dolorum, ipsa eaque minima
                     consectetur hic.</p>
             </div>
-        </div>
-
-
-
-        </div>
+        </div> -->
 
     </section>
-
-    <div id="player"></div>
-
-    <!-- Movies will Get Dumped here -->
-    <div id="movies-view" class="row"></div>
-
-    <!-- Rendered Buttons will get Dumped Here  -->
-    <div id="buttons-view"></div>
 
     <footer class="page-footer  grey darken-4">
         <div class="container">
@@ -354,7 +336,7 @@
                             <a class="grey-text text-lighten-3" href="#!">Chad</a>
                         </li>
                         <li>
-                            <a class="grey-text text-lighten-3" href="#!">Connor</a>
+                            <a class="grey-text text-lighten-3" href="https://theconnorthomas.github.io/" target="_blank">Connor</a>
                         </li>
                         <li>
                             <a class="grey-text text-lighten-3" href="#!">Olu</a>
@@ -376,15 +358,7 @@
         </div>
     </footer>
 
-    <!-- <script src="./assets/javascript/javascript.js"></script> -->
-
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            $('.materialboxed').materialbox();
-        });
-
-    </script>
+    <script src="./assets/javascript/javascript.js"></script>
 </body>
 
 </html>

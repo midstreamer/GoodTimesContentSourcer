@@ -2,24 +2,24 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Jquery CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js">
-    </script>
-    <!-- Moment.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <!-- CSS -->
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/png" href="./assets/images/CClogo.png" />
-    <title>Books & more</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Jquery CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- Moment.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js">
+        </script>
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <!-- CSS -->
+        <link rel="stylesheet" href="./assets/css/style.css">
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/png" href="./assets/images/CClogo.png" />
+        <title>Books & more</title>
 </head>
 
 <body>
@@ -69,22 +69,36 @@
     <section id="main">
 
         <div id="filter" class="row">
+            <div class="col l2">
+                <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Filter
+                    <i class="material-icons right">filter_list
+                    </i>
+                </a>
 
-            <div class="col l1 s1 valign-wrapper">
-                <p class="right">Filter</p>
-                <i class="material-icons right">filter_list
-                </i>
+                <!-- Dropdown Structure -->
+                <ul id='dropdown1' class='dropdown-content'>
+                    <li>
+                        <a href="#!">one</a>
+                    </li>
+                    <li>
+                        <a href="#!">two</a>
+                    </li>
+                    <li class="divider" tabindex="-1"></li>
+                    <li>
+                        <a href="#!">three</a>
+                    </li>
+                    <li>
+                        <a href="#!">
+                            <i class="material-icons">view_module</i>four</a>
+                    </li>
+                    <li>
+                        <a href="#!">
+                            <i class="material-icons">cloud</i>five</a>
+                    </li>
+                </ul>
             </div>
         </div>
 
-        <table id="filter-table">
-            <tbody>
-                <tr>
-                    <td class="center-align">Date</td>
-                    <td class="center-align">Genre</td>
-                </tr>
-            </tbody>
-        </table>
         <div class="row">
             <div class="col l1 s12"></div>
             <div class="col l7 s12">
@@ -103,11 +117,14 @@
                         <p class="grey-text text-darken-3 lighten-3">Stars:</p>
                     </div>
                 </div>
+
+                <a id="trailerBtn" class="waves-effect waves-light btn-large">
+                    <i class="material-icons right">ondemand_video</i>Watch the trailer</a>
             </div>
         </div>
         <div class="row">
             <div class="col l1 s12"></div>
-            <div class="col s10">
+            <div class="col l10 s12">
                 <div class="section white">
                     <div class="row container">
                         <h2 class="header">Synopsis</h2>
@@ -133,7 +150,7 @@
                                 <a class="grey-text text-lighten-3" href="#!">Chad</a>
                             </li>
                             <li>
-                                <a class="grey-text text-lighten-3" href="#!">Connor</a>
+                                <a class="grey-text text-lighten-3" href="https://theconnorthomas.github.io/">Connor</a>
                             </li>
                             <li>
                                 <a class="grey-text text-lighten-3" href="#!">Olu</a>
@@ -157,7 +174,7 @@
 
         <script src="./assets/javascript/javascript.js"></script>
 
-        <script type="text/javascript">
+       <!--  <script type="text/javascript">
 
             // Initial array of categories
             var categories = ["Movies"];
@@ -306,6 +323,6 @@
             $(document).ready(function () {
                 $('.materialboxed').materialbox();
             });
-        </script>
+        </script> -->
 
 </html>
