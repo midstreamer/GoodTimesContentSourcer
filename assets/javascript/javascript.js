@@ -172,7 +172,7 @@ if (e.which == 13) { // When enter is pressed fire function
 
                 // Run above filters before Date/Genre
 
-                //------------ Date Filter (Hardcode)-----------------
+                //------------ Date Filter -------
                     var mYear = dataAccess.release_date.slice(0,3);
                     var dFromVal = $('#dateFromSelect :selected').val();
                     var dToVal = $('#dateToSelect :selected').val();
@@ -184,6 +184,7 @@ if (e.which == 13) { // When enter is pressed fire function
                         if (mYear < dFromVal || mYear > dToVal){
                             console.log("3. i am getting cut(3): "+res.results[i].title)
                             res.results.splice(i,1);
+                            i -= 1;
                             continue;
                         };
                     };
