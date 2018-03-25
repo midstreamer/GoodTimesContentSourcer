@@ -158,15 +158,21 @@ if (e.which == 13) { // When enter is pressed fire function
                 // Run above filters before Date/Genre
 
                 //------------ Date Filter (Hardcode)-----------------
-                // var dateFrom = $(#dateinput1).val().trim();
-                //var dateTo = $(#dateinput2).val().trim();
+                    var mYear = dataAccess.release_date.slice(0,3);
+                    var dFromVal = $('#dateFromSelect :selected').val();
+                    var dToVal = $('#dateToSelect :selected').val();
+
+                    console.log(dFromVal);
+                    console.log(dToVal);
+                    
+                    if (dFromVal != ""){
+                        if (mYear < dFromVal || mYear > dToVal){
+                            console.log("3. i am getting cut(3): "+res.results[i].title)
+                            res.results.splice(i,1);
+                            continue;
+                        };
+                    };
                 
-                // if (dateFrom != ""){
-                //     if (dataAccess.release_date.slice(0,3) < dateFrom && dataAccess.release_date.slice(0,3) > dateTo){
-                //         res.results.splice(i,1);
-                //         continue;
-                //     };
-                // };
 
                 // Genre Filter
                 
