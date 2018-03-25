@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     contentIndex = 0;
-    var queryInput = "Ready Player One";
+    var queryInput = "Dunkirk";
 
 var url = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
              url += '?' + $.param({
@@ -15,7 +15,7 @@ var url = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
                                  // We store all of the retrieved data inside of an object called "response"
                  .then(function (result) {
                                  // Log the resulting object
-                     console.log(result);
+                     console.log("i am result", result);
                      for (var i = 0; i < result.results.length; i++) {
                                  // Transfer content to HTML
                          $("#NytTitle"+contentIndex+"").html(result.results[i].headline);
@@ -40,8 +40,6 @@ var url = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
                     });
 // youtube API
     
-
-    var categories = $(this).attr("data-name");
     var URL = "https://www.googleapis.com/youtube/v3/search?"
     var part = "&part=snippet&q=" //snippet is the default setting, but it gives us the information that we looking for 
     var trailers = "trailers"

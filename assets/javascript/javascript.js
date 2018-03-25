@@ -40,6 +40,10 @@ $(document).ready(function() {
     $('.dropdown-trigger').dropdown();
     
     $('select').formSelect();
+
+    loadData.ref('title').remove();
+    loadData.ref('overview').remove();
+    loadData.ref('image').remove();
     
     // AJAX call for default TMDB search items
     
@@ -67,8 +71,9 @@ $(document).ready(function() {
                     
             $("#cardImg"+contentIndex+"").attr("src","http://image.tmdb.org/t/p/w200/"+defaultInfo.poster_path);
             
-            loadData.ref().push();
-            object: defaultInfo
+            loadData.ref('title').push(defaultInfo.title);
+            loadData.ref('overview').push(defaultInfo.overview);
+            loadData.ref('image').push("http://image.tmdb.org/t/p/w200" + defaultInfo.poster_path);
     
             contentIndex++;
             // console.log(topTwelve);
@@ -114,6 +119,10 @@ $(document).ready(function() {
         $("#search").val('');
         contentIndex = 0;
         $(".card").show();
+
+        loadData.ref('title').remove();
+        loadData.ref('overview').remove();
+        loadData.ref('image').remove();
 
             var dFromVal = $('#dateFromSelect').val();
             var dToVal = $('#dateToSelect').val();
@@ -220,6 +229,10 @@ $(document).ready(function() {
                     
                     $("#cardImg"+contentIndex+"").attr("src","http://image.tmdb.org/t/p/w200"+res.results[i].poster_path);
                     
+
+                    loadData.ref('title').push(res.results[i].title);
+                    loadData.ref('overview').push(res.results[i].overview);
+                    loadData.ref('image').push("http://image.tmdb.org/t/p/w200" + res.results[i].poster_path);
                     //increase the content index for next iteration
                     contentIndex++;
                     console.log("5. contentindex: "+contentIndex)    
@@ -241,7 +254,7 @@ $(document).ready(function() {
     
     // Event Listener for Card buttons link to page 3
         $('#btn'+contentIndex).on('click', function(){
-            location.href='../more-info.html';
+            location.href='./more-info.html';
     
             
     
