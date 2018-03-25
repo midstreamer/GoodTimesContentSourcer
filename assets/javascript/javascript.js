@@ -41,16 +41,6 @@ $('.dropdown-trigger').dropdown();
 
 $('select').formSelect();
 
-//function that renders buttons for years from 1930-2018
-function yearBtnRender() {
-
-
-
-
-}
-
-
-
 // AJAX call for default TMDB search items
 
 var currentDate = new Date("2018-02-09");
@@ -85,6 +75,33 @@ $.ajax({
     };
 });
 
+//AJAX call for genreData
+var genreURL = 'https://api.themoviedb.org/3/genre/movie/list?api_key=6bb0a75f85c928245a8216e455d2280b&language=en-US';
+
+var genreData = function(){
+    var results = null;
+    $.ajax({
+        async: false,
+        type: "GET",
+        global: false,
+        dataType: 'json',
+        url: genreURL,
+        success: function(data){
+            results = data;
+        }
+    });
+    return results;
+}();
+
+console.log(genreData);
+
+// Genre Filter
+var selectedGenreID = "";
+$('input[name=genre]').on("click", function(event) {
+    selectedGenreID = parseInt($(this).val());
+    console.log(selectedGenreID);
+});
+
 //-----------------------------------search version
 var contentIndex = 0;
 var queryInput = "";
@@ -97,27 +114,6 @@ if (e.which == 13) { // When enter is pressed fire function
     $("#search").val('');
     contentIndex = 0;
     $(".card").show();
-
-    var genreURL = 'https://api.themoviedb.org/3/genre/movie/list?api_key=6bb0a75f85c928245a8216e455d2280b&language=en-US';
-
-    var genreData = function(){
-        
-        var results = null;
-        $.ajax({
-            async: false,
-            type: "GET",
-            global: false,
-            dataType: 'json',
-            url: genreURL,
-            success: function(data){
-                results = data;
-                
-            }
-        });
-        return results;
-    }();
-
-    console.log(genreData);
 
         var url = 'https://api.themoviedb.org/3/search/multi'
         var q = '&query=' + queryInput;
@@ -172,6 +168,8 @@ if (e.which == 13) { // When enter is pressed fire function
                 }
                 console.log("4. filtered results=", res)
 
+
+
                 // Run above filters before Date/Genre
 
                 //------------ Date Filter (Hardcode)-----------------
@@ -187,6 +185,20 @@ if (e.which == 13) { // When enter is pressed fire function
 
                 // Genre Filter
                 
+                console.log("selectedGenreID ="+selectedGenreID)
+                console.log("dataaccess genreid= ", dataAccess.genre_ids);
+                console.log(typeof selectedGenreID)
+
+                if (selectedGenreID === "") {
+                    console.log("genre is not picked");
+                    false;
+                } else if($.inArray(selectedGenreID, res.results[i].genre_ids) == -1) {
+                    console.log("selected genre is not in result")
+                    res.results.splice(i,1);
+                    i -= 1;
+                    continue;
+                }
+                console.log("4. filtered results=", res)
                     // Event listener for each button that responds to ID
                     // Iterate through genre IDs - dataAccess.media_types[i]
                     // If for each ID that compares to genre_ids of json object
