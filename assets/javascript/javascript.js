@@ -37,9 +37,40 @@
                                     var loadData = firebase.database(); 
                                   
                                   
-                                  $('.dropdown-trigger').dropdown();
-                                  
-                                  $('select').formSelect();
+                                    $('#filterOptions').hide();
+                                    $('#filterOptions2').hide();
+            
+                                    $('#filterBtn').on('click', function () {
+            
+                                        $('#filterBtn').hide();
+                                        $('#welcomeText').hide();
+                                        $('#filterOptions').show();
+            
+                                    });
+            
+                                    $('#filterBtn2').on('click', function () {
+            
+                                        $('#filterBtn2').hide();
+                                        $('#filterOptions2').show();
+            
+                                    });
+            
+                                    $('.center').on('click', function () {
+            
+                                        $('#filterOptions').hide();
+                                        $('#filterBtn').show();
+                                        $('#welcomeText').show();
+                                    });
+            
+                                    $('.filterClose').on('click', function () {
+            
+                                        $('#filterOptions2').hide();
+                                        $('#filterBtn2').show();
+                                    });
+            
+                                    $('.dropdown-trigger').dropdown();
+            
+                                    $('select').formSelect();
                                   
                                   // AJAX call for default TMDB search items
                                   
