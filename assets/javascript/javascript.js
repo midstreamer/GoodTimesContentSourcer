@@ -22,6 +22,21 @@
 
 $(document).ready(function() {
 
+
+// Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDroCpq4OgkTGdZARAsbG_Tt7xdHdu6Xyw",
+    authDomain: "good-times-content-sourcer.firebaseapp.com",
+    databaseURL: "https://good-times-content-sourcer.firebaseio.com",
+    projectId: "good-times-content-sourcer",
+    storageBucket: "good-times-content-sourcer.appspot.com",
+    messagingSenderId: "806270030885"
+  };
+  firebase.initializeApp(config);
+
+  var loadData = firebase.database(); 
+
+
 $('.dropdown-trigger').dropdown();
 
 $('select').formSelect();
@@ -46,9 +61,9 @@ var filteredRes = [];
 $.ajax({
   url: 'https://api.themoviedb.org/3/discover/movie?api_key=6bb0a75f85c928245a8216e455d2280b&language=en-US&region=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&release_date.gte=' + currentDate, // Calls for movies from recent year
   method: 'GET',
-  success: function (data) {
-      console.log(data)
-  }
+//   success: function (data) {
+//       console.log(data)
+  //}
 }).then(function (res){
   for(i=0; i<12; i++){
         var defaultInfo = res.results[i];
@@ -61,7 +76,9 @@ $.ajax({
         $("#content"+contentIndex+"").text(defaultInfo.overview);
                 
         $("#cardImg"+contentIndex+"").attr("src","http://image.tmdb.org/t/p/w200/"+defaultInfo.poster_path);
-                
+        
+        loadData.ref().push();
+        object: defaultInfo
 
         contentIndex++;
         // console.log(topTwelve);
