@@ -73,23 +73,23 @@
 
         <div id="filter" class="row">
             <div class="input-field col s2">
-                <select>
-                    <option value="" disabled selected>Choose start date</option>
-                    <option value="2014">2014</option>
-                    <option value="2015">2015</option>
-                    <option value="2016">2016</option>
-                    <option value="2017">2017</option>
-                    <option value="2018">2018</option>
+                <select id="dateFromSelect">
+                    <option class="dateFrom" value="" disabled selected>Choose start date</option>
+                    <option class="dateFrom" value="1980">1980</option>
+                    <option class="dateFrom" value="2015">2015</option>
+                    <option class="dateFrom" value="2016">2016</option>
+                    <option class="dateFrom" value="2017">2017</option>
+                    <option class="dateFrom" value="2018">2018</option>
                 </select>
             </div>
             <div class="input-field col s2">
-                <select>
-                    <option value="" disabled selected>Choose end date</option>
-                    <option value="2014">2014</option>
-                    <option value="2015">2015</option>
-                    <option value="2016">2016</option>
-                    <option value="2017">2017</option>
-                    <option value="2018">2018</option>
+                <select id="dateToSelect">
+                    <option class="dateTo" value="" disabled selected>Choose end date</option>
+                    <option class="dateTo" value="2014">2014</option>
+                    <option class="dateTo" value="2015">2015</option>
+                    <option class="dateTo" value="2016">2016</option>
+                    <option class="dateTo" value="2017">2017</option>
+                    <option class="dateTo" value="2018">2018</option>
                 </select>
             </div>
             <!-- <div class="col l2">
@@ -140,6 +140,26 @@
                 <h1>Welcome to Culture Curator</h1>
                 <p>Helping you find your new favorite thing.</p>
             </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="genreContainer">
+        <!-- test radio button -->
+        <input id="action" name="genre" type="radio" value="28"><label for="action">Action</label>
+        <input id="adventure" name="genre" type="radio" value="12"><label for="adventure">Adventure</label>
+        <input id="animation" name="genre" type="radio" value="16"><label for="animation">Animation</label>
+        <input id="comedy" name="genre" type="radio" value="35"><label for="comedy">Comedy</label>
+        <input id="crime" name="genre" type="radio" value="80"><label for="crime">Crime</label>
+        <input id="drama" name="genre" type="radio" value="18"><label for="drama">Drama</label>
+        <input id="family" name="genre" type="radio" value="10751"><label for="family">Family</label>
+        <input id="fantasy" name="genre" type="radio" value="14"><label for="fantasy">Fantasy</label>
+        <input id="horror" name="genre" type="radio" value="27"><label for="horror">Horror</label>
+        <input id="mystery" name="genre" type="radio" value="9648"><label for="mystery">Mystery</label>
+        <input id="romance" name="genre" type="radio" value="10749"><label for="romance">Romance</label>
+        <input id="sciencefiction" name="genre" type="radio" value="878"><label for="sciencefiction">Science Fiction</label>
+        <input id="thriller" name="genre" type="radio" value="53"><label for="thriller">Thriller</label>
+        <input id="war" name="genre" type="radio" value="10752"><label for="war">War</label>  
 
         </div>
     </div>
