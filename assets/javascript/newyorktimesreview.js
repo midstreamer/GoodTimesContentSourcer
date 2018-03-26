@@ -13,6 +13,10 @@ firebase.initializeApp(config);
 
 var loadData = firebase.database(); 
 
+$(".brand-logo").on("click", function() {
+
+    location.href='./index.html';
+})
     //retrieve card data-index attribute from DB
     var cardval;
     loadData.ref('cardvalue').once('value').then(function(snapshot) {

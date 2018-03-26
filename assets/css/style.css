@@ -159,3 +159,7 @@ li {
 h5 {
     text-align: center;
 }
+
+#nytHeader {
+    text-decoration: underline;
+}
