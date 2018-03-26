@@ -1,5 +1,18 @@
 $(document).ready(function() {
 
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyDroCpq4OgkTGdZARAsbG_Tt7xdHdu6Xyw",
+    authDomain: "good-times-content-sourcer.firebaseapp.com",
+    databaseURL: "https://good-times-content-sourcer.firebaseio.com",
+    projectId: "good-times-content-sourcer",
+    storageBucket: "good-times-content-sourcer.appspot.com",
+    messagingSenderId: "806270030885"
+};
+firebase.initializeApp(config);
+
+var loadData = firebase.database(); 
+
     contentIndex = 0;
     var queryInput = "Dunkirk";
 
@@ -103,6 +116,18 @@ var url = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
         // $("#movies-view").prepend(movieDiv);
         }
     });
+    var cardval;
+    loadData.ref('cardvalue').once('value').then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            cardval = childSnapshot.val();
+            console.log("cardval: "+cardval);
+        })    
+        });
+    
+    
+    
+        
+
 
     });
 

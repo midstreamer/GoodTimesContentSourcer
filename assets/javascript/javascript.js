@@ -265,13 +265,15 @@ if (e.which == 13) { // When enter is pressed fire function
 
 // Event Listener for Card buttons link to page 3
     $('.cardbtn').on('click', function(){
-        // location.href='./more-info.html';
-
-        var cardVal = $(this).val();
+        loadData.ref('cardvalue').remove();
+        
+        var cardVal = $(this).data("index");
+        loadData.ref('cardvalue').push(cardVal);
 
         console.log('VALUE=' + cardVal);
-        
-        
+    
+        location.href='./more-info.html';
+
 
 
 
