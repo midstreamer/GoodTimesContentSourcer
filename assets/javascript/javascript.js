@@ -310,7 +310,7 @@ if (e.which == 13) { // When enter is pressed fire function
 
                 loadData.ref('searchTitle').push(res.results[i].title);
                 loadData.ref('searchOverview').push(res.results[i].overview);
-                loadData.ref('searchImage').push("http://image.tmdb.org/t/p/w200" + res.results[i].poster_path);
+                loadData.ref('searchImage').push("http://image.tmdb.org/t/p/w500" + res.results[i].poster_path);
                 loadData.ref('searchDate').push(res.results[i].release_date);
                 loadData.ref('searchVote').push(res.results[i].vote_average);
                 //increase the content index for next iteration

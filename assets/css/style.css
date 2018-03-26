@@ -1,7 +1,7 @@
 body {
     font-family: 'Raleway', sans-serif;
     background-color: #f5f5f5;
-    background-image: url(../images/beautiful-modern-website-background-patterns-vector-vintage-background-pattern-free-vector-modern-website-background-patterns.jpg);
+    /* background-image: url(../images/beautiful-modern-website-background-patterns-vector-vintage-background-pattern-free-vector-modern-website-background-patterns.jpg); */
     background-attachment: fixed;
 }
 
@@ -94,7 +94,7 @@ img {
 
 #filterOptions {
     height: 300px;
-    color: #ffffff;
+    color: #000000;
     overflow: auto;
 }
 
