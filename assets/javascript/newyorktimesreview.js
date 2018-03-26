@@ -100,17 +100,17 @@ var url = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
                     });
                     var URL = "https://www.googleapis.com/youtube/v3/search?"
     var part = "&part=snippet&q=" //snippet is the default setting, but it gives us the information that we looking for 
-    var trailers = "trailers"
+    var trailers = "official trailer"
     var q = titleOfInterest +" "+ trailers //searching for music, we will change this with the uer input below
     var results = "&maxResults=5" //results can be 0 to 50 
     var order = "&order=relevance" //listed in order of relevance 
     var type = "&type=video"  //this has to be (channel, playlist, or video)
-    var videoSyndicated = "&videoSyndicated=true" //if true this only returns videos that can be played outside of youtube 
-    var videoEmbeddable = "&videoEmbeddable=true" //only returns embeddable videos
-    var videoLicense = "&videoLicense=creativeCommon" //only returns videos with a creative common license
+    // var videoSyndicated = "&videoSyndicated=true" //if true this only returns videos that can be played outside of youtube 
+    // var videoEmbeddable = "&videoEmbeddable=true" //only returns embeddable videos
+    // var videoLicense = "&videoLicense=creativeCommon" //only returns videos with a creative common license
     // var videoCategory = "&videoCategoryId=30" //category 30 is movies 
     var APIkey = "&key=AIzaSyBP43ErpwhWXmxgZehpzg3e0obiYKKNHfY";
-    var queryURL = URL + part + q + results + order + type + videoSyndicated + videoEmbeddable + videoLicense + APIkey
+    var queryURL = URL + part + q + results + order + type + APIkey;
 
     // https://www.googleapis.com/youtube/v3/search?&part=snippet&maxResults=30
     // &order=relevance&type=video&videoCaption=any&videoCategoryId=10
@@ -222,12 +222,12 @@ var url = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
     var results = "&maxResults=5" //results can be 0 to 50 
     var order = "&order=relevance" //listed in order of relevance 
     var type = "&type=video"  //this has to be (channel, playlist, or video)
-    var videoSyndicated = "&videoSyndicated=true" //if true this only returns videos that can be played outside of youtube 
-    var videoEmbeddable = "&videoEmbeddable=true" //only returns embeddable videos
-    var videoLicense = "&videoLicense=creativeCommon" //only returns videos with a creative common license
+    // var videoSyndicated = "&videoSyndicated=true" //if true this only returns videos that can be played outside of youtube 
+    // var videoEmbeddable = "&videoEmbeddable=true" //only returns embeddable videos
+    // var videoLicense = "&videoLicense=creativeCommon" //only returns videos with a creative common license
     // var videoCategory = "&videoCategoryId=30" //category 30 is movies 
     var APIkey = "&key=AIzaSyBP43ErpwhWXmxgZehpzg3e0obiYKKNHfY";
-    var queryURL = URL + part + q + results + order + type + videoSyndicated + videoEmbeddable + videoLicense + APIkey
+    var queryURL = URL + part + q + results + order + type + APIkey
 
     // https://www.googleapis.com/youtube/v3/search?&part=snippet&maxResults=30
     // &order=relevance&type=video&videoCaption=any&videoCategoryId=10
