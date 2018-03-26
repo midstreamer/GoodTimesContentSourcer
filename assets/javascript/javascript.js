@@ -28,11 +28,17 @@ loadData.ref('title').remove();
 loadData.ref('overview').remove();
 loadData.ref('image').remove();
 loadData.ref('date').remove();
+loadData.ref('vote').remove();
 loadData.ref('KEYtitlekeyarray').remove();
 loadData.ref('KEYoverviewkeyarray').remove();
 loadData.ref('KEYimagekeyarray').remove();
 loadData.ref('KEYdatekeyarray').remove();
 loadData.ref('KEYvotekeyarray').remove();
+loadData.ref('KEYsearchtitlekeyarray').remove();
+loadData.ref('KEYsearchoverviewkeyarray').remove();
+loadData.ref('KEYsearchimagekeyarray').remove();
+loadData.ref('KEYsearchdatekeyarray').remove();
+loadData.ref('KEYsearchvotekeyarray').remove();
 
 // AJAX call for default TMDB search items
 
@@ -153,16 +159,23 @@ var genreData = function(){
 console.log(genreData);
 
 // Genre Filter
-var selectedGenreID = "";
-$('input[name=genre]').on("click", function(event) {
-    selectedGenreID = parseInt($(this).val());
-    console.log(selectedGenreID);
-});
+// var selectedGenreID = "";
+// $('option[name=genre]').on("click", function(event) {
+//     selectedGenreID = parseInt($(this).val());
+//     console.log(selectedGenreID);
+// });
 
 //-----------------------------------search version
 var contentIndex = 0;
 var queryInput = "";
 var searchResults;
+var searchtitlekeyArray = [];
+var searchoverviewKeyArray = [];
+var searchimageKeyArray = [];
+var searchdateKeyArray = [];
+var searchvoteKeyArray = [];
+
+
 $("#search").keypress(function(e) {
 if (e.which == 13) { // When enter is pressed fire function
     event.preventDefault();
@@ -176,12 +189,24 @@ if (e.which == 13) { // When enter is pressed fire function
     loadData.ref('overview').remove();
     loadData.ref('image').remove();
     loadData.ref('date').remove();
-    loadData.ref('vote').remove();
+    loadData.ref('searchTitle').remove();
+    loadData.ref('searchOverview').remove();
+    loadData.ref('searchImage').remove();
+    loadData.ref('searchDate').remove();
+    loadData.ref('searchVote').remove();
+    loadData.ref('KEYsearchtitlekeyarray').remove();
+    loadData.ref('KEYsearchoverviewkeyarray').remove();
+    loadData.ref('KEYsearchimagekeyarray').remove();
+    loadData.ref('KEYsearchdatekeyarray').remove();
+    loadData.ref('KEYsearchvotekeyarray').remove();
 
         var dFromVal = $('#dateFromSelect').val();
         var dToVal = $('#dateToSelect').val();
         console.log(dFromVal)
         console.log(dToVal)
+
+        var selectedGenreVal = parseInt($('#genreFromSelect').val());
+        console.log(selectedGenreVal)
 
         var url = 'https://api.themoviedb.org/3/search/multi'
         var q = '&query=' + queryInput;
@@ -252,18 +277,17 @@ if (e.which == 13) { // When enter is pressed fire function
                             continue;
                         };
                     };
-                
-
+                    
                 // Genre Filter
-                
-                console.log("selectedGenreID ="+selectedGenreID)
-                console.log("dataaccess genreid= ", dataAccess.genre_ids);
-                console.log(typeof selectedGenreID)
 
-                if (selectedGenreID === "") {
+                console.log("selectedGenreVal ="+selectedGenreVal)
+                console.log("dataaccess genreid= ", dataAccess.genre_ids);
+                console.log(typeof selectedGenreVal)
+
+                if (Number.isNaN(selectedGenreVal)) {
                     console.log("genre is not picked");
                     false;
-                } else if($.inArray(selectedGenreID, res.results[i].genre_ids) == -1) {
+                } else if($.inArray(selectedGenreVal, res.results[i].genre_ids) == -1) {
                     console.log("selected genre is not in result")
                     res.results.splice(i,1);
                     i -= 1;
@@ -284,14 +308,71 @@ if (e.which == 13) { // When enter is pressed fire function
                 $("#cardImg"+contentIndex+"").attr("src","http://image.tmdb.org/t/p/w200"+res.results[i].poster_path);
                 
 
-                loadData.ref('title').push(res.results[i].title);
-                loadData.ref('overview').push(res.results[i].overview);
-                loadData.ref('image').push("http://image.tmdb.org/t/p/w200" + res.results[i].poster_path);
-                loadData.ref('date').push(res.results[i].release_date);
+                loadData.ref('searchTitle').push(res.results[i].title);
+                loadData.ref('searchOverview').push(res.results[i].overview);
+                loadData.ref('searchImage').push("http://image.tmdb.org/t/p/w200" + res.results[i].poster_path);
+                loadData.ref('searchDate').push(res.results[i].release_date);
+                loadData.ref('searchVote').push(res.results[i].vote_average);
                 //increase the content index for next iteration
                 contentIndex++;
                 console.log("5. contentindex: "+contentIndex)    
                 }
+
+                loadData.ref('searchTitle').once('value').then(function(snapshot) {
+                    snapshot.forEach(function(childSnapshot) {
+                        var searchtitlekey = childSnapshot.key;
+                        var childData = childSnapshot.val();
+                        searchtitlekeyArray.push(searchtitlekey);
+                        console.log("searchtitlekeyarray =", searchtitlekeyArray);
+                        
+                    });
+                    loadData.ref('KEYsearchtitlekeyarray').push(searchtitlekeyArray);
+                });
+            
+                loadData.ref('searchOverview').once('value').then(function(snapshot) {
+                    snapshot.forEach(function(childSnapshot) {
+                        var searchoverviewkey = childSnapshot.key;
+                        var childData = childSnapshot.val();
+                        searchoverviewKeyArray.push(searchoverviewkey);
+                        console.log("KEYsearchoverviewkeyarray =", searchoverviewKeyArray);
+                        
+                    });
+                    loadData.ref('KEYsearchoverviewkeyarray').push(searchoverviewKeyArray);
+                });
+            
+                loadData.ref('searchImage').once('value').then(function(snapshot) {
+                    snapshot.forEach(function(childSnapshot) {
+                        var searchimagekey = childSnapshot.key;
+                        var childData = childSnapshot.val();
+                        searchimageKeyArray.push(searchimagekey);
+                        console.log("KEYsearchimagekeyarray =", searchimageKeyArray);
+                        
+                    });
+                    loadData.ref('KEYsearchimagekeyarray').push(searchimageKeyArray);
+                });
+            
+                loadData.ref('searchDate').once('value').then(function(snapshot) {
+                    snapshot.forEach(function(childSnapshot) {
+                        var searchdatekey = childSnapshot.key;
+                        var childData = childSnapshot.val();
+                        searchdateKeyArray.push(searchdatekey);
+                        console.log("KEYsearchdatekeyarray =", searchdateKeyArray);
+                        
+                    });
+                    loadData.ref('KEYsearchdatekeyarray').push(searchdateKeyArray);
+                });
+            
+                loadData.ref('searchVote').once('value').then(function(snapshot) {
+                    snapshot.forEach(function(childSnapshot) {
+                        var searchvotekey = childSnapshot.key;
+                        var childData = childSnapshot.val();
+                        searchvoteKeyArray.push(searchvotekey);
+                        console.log("KEYsearchvotekeyarray =", searchvoteKeyArray);
+                        
+                    });
+                    loadData.ref('KEYsearchvotekeyarray').push(searchvoteKeyArray);
+                });
+            
                 
                     //Hide extra cards; remove remaining cards if the search filter does not provide enough search results, less than number of cards (undefined/null) 
                     
