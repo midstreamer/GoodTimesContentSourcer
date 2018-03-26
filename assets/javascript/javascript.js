@@ -22,7 +22,9 @@
 
 $(document).ready(function() {
 
-
+    var titlekeyArray = [];
+    var overviewKeyArray = [];
+    var imageKeyArray = [];
     // Initialize Firebase
     var config = {
         apiKey: "AIzaSyDroCpq4OgkTGdZARAsbG_Tt7xdHdu6Xyw",
@@ -60,6 +62,7 @@ $(document).ready(function() {
     //}
     }).then(function (res){
     for(i=0; i<12; i++){
+        console.log("i = "+i)
             var defaultInfo = res.results[i];
             // $(defaultInfo).push(filteredRes);
             // console.log(filteredRes);
@@ -71,14 +74,48 @@ $(document).ready(function() {
                     
             $("#cardImg"+contentIndex+"").attr("src","http://image.tmdb.org/t/p/w200/"+defaultInfo.poster_path);
             
+            
             loadData.ref('title').push(defaultInfo.title);
             loadData.ref('overview').push(defaultInfo.overview);
             loadData.ref('image').push("http://image.tmdb.org/t/p/w200" + defaultInfo.poster_path);
+
+        //    loadData.ref('title').once("value").then(function(snapshot){
+               
+        //     snapshot.forEach(function)
+        //        var key = snapshot.val();
+        //        console.log("Key = "+key)
+        //         keyArray.push(key);
+        //         console.log("keyarray = "+keyArray)
+        //    }) 
     
             contentIndex++;
             // console.log(topTwelve);
         };
+        
+        loadData.ref('title').once('value').then(function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+                var titlekey = childSnapshot.key;
+                var childData = childSnapshot.val();
+                titlekeyArray.push(titlekey);
+                console.log(keyArray);
+
+        loadData.ref('overview').once('value').then(function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+                var overviewkey = childSnapshot.key;
+                var childData = childSnapshot.val();
+                overviewkeyArray.push(overviewkey);
+                console.log(overviewkeyArray);
+
+        loadData.ref('image').once('value').then(function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+                var imagekey = childSnapshot.key;
+                var childData = childSnapshot.val();
+                imagekeyArray.push(imagekey);
+                console.log(imagekeyArray);
+            })
+        })
     });
+    
     
     //AJAX call for genreData
     var genreURL = 'https://api.themoviedb.org/3/genre/movie/list?api_key=6bb0a75f85c928245a8216e455d2280b&language=en-US';
