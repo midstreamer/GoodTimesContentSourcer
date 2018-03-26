@@ -24,6 +24,9 @@ $('select').formSelect();
 loadData.ref('title').remove();
 loadData.ref('overview').remove();
 loadData.ref('image').remove();
+loadData.ref('KEYtitlekeyarray').remove();
+loadData.ref('KEYoverviewkeyarray').remove();
+loadData.ref('KEYimagekeyarray').remove();
 
 // AJAX call for default TMDB search items
 
@@ -40,6 +43,7 @@ method: 'GET',
 //}
 }).then(function (res){
 for(i=0; i<12; i++){
+    
     console.log("i = "+i)
         var defaultInfo = res.results[i];
         // $(defaultInfo).push(filteredRes);
@@ -55,11 +59,12 @@ for(i=0; i<12; i++){
         
         loadData.ref('title').push(defaultInfo.title);
         loadData.ref('overview').push(defaultInfo.overview);
-        loadData.ref('image').push("http://image.tmdb.org/t/p/w200" + defaultInfo.poster_path);
+        loadData.ref('image').push("http://image.tmdb.org/t/p/w500" + defaultInfo.poster_path);
 
         contentIndex++;
 
     };
+    console.log(res)
     
     loadData.ref('title').once('value').then(function(snapshot) {
         snapshot.forEach(function(childSnapshot) {

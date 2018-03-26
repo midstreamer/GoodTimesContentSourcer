@@ -116,6 +116,7 @@ var url = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
         // $("#movies-view").prepend(movieDiv);
         }
     });
+    
     var cardval;
     loadData.ref('cardvalue').once('value').then(function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
@@ -123,13 +124,88 @@ var url = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
             console.log("cardval: "+cardval);
         })    
         });
-    
-   
-    
-        
+
+    //POPULATE TITLE TO INFO PAGE
+    var titlekeyArray;  
+    var titleIndex;   
+    loadData.ref('KEYtitlekeyarray').once('value').then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            titlekeyArray = childSnapshot.val();
+            console.log("titlekeyarray: "+titlekeyArray);
+            titleIndex = titlekeyArray[cardval];
+            console.log("titleindex= "+titleIndex)
+        })    
+        });
+
+    var titleOfInterest;
+    var rootRef = firebase.database().ref();
+    var urlRef = rootRef.child("title");
+    urlRef.once("value", function(snapshot) {
+    snapshot.forEach(function(child) {
+    if (child.key === titleIndex) {
+    titleOfInterest = child.val();
+    console.log(titleOfInterest);
+    console.log(typeof titleOfInterest)
+    $("#sd-bar-title").text(titleOfInterest);
+    }
+  }); 
+});
+
+    //POPULATE OVERVIEW TO INFO PAGE
+    var overviewkeyArray;  
+    var overviewIndex;   
+    loadData.ref('KEYoverviewkeyarray').once('value').then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            overviewkeyArray = childSnapshot.val();
+            console.log("overviewkeyarray: "+overviewkeyArray);
+            overviewIndex = overviewkeyArray[cardval];
+            console.log("overviewindex= "+overviewIndex)
+        })    
+        });
+
+    var overviewOfInterest;
+    var rootRef = firebase.database().ref();
+    var urlRef = rootRef.child("overview");
+    urlRef.once("value", function(snapshot) {
+    snapshot.forEach(function(child) {
+    if (child.key === overviewIndex) {
+    overviewOfInterest = child.val();
+    console.log(overviewOfInterest);
+    console.log(typeof overviewOfInterest)
+    $("#overview-p").text(overviewOfInterest);
+    }
+    }); 
+});
+
+    //POPULATE POSTER
+    var imagekeyArray;  
+    var imageIndex;   
+    loadData.ref('KEYimagekeyarray').once('value').then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            imagekeyArray = childSnapshot.val();
+            console.log("imagekeyarray: "+imagekeyArray);
+            imageIndex = imagekeyArray[cardval];
+            console.log("imageindex= "+imageIndex)
+        })    
+        });
+
+    var imageOfInterest;
+    var rootRef = firebase.database().ref();
+    var urlRef = rootRef.child("image");
+    urlRef.once("value", function(snapshot) {
+    snapshot.forEach(function(child) {
+    if (child.key === imageIndex) {
+    imageOfInterest = child.val();
+    console.log(imageOfInterest);
+    console.log(typeof imageOfInterest)
+    $("#pg-3-poster").attr("src", imageOfInterest);
+    }
+    }); 
+});
 
 
-    });
+
+});
 
 
 // contentIndex = 0;
