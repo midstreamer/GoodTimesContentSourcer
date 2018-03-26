@@ -25,6 +25,10 @@ select {
     margin-top: 1.5em;
 }
 
+.select-wrapper {
+    background-color: #f5f5f5;
+}
+
 nav .input-field {
     height: 65px;
 }
@@ -84,7 +88,7 @@ img {
 
 .input-field {
     height: 200px;
-    overflow: scroll;
+    /* overflow: scroll; */
     margin-top: 50px;
 }
 
