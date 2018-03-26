@@ -67,7 +67,9 @@ for(i=0; i<12; i++){
             var childData = childSnapshot.val();
             titlekeyArray.push(titlekey);
             console.log("titlekeyarray =", titlekeyArray);
+            
         });
+        loadData.ref('KEYtitlekeyarray').push(titlekeyArray);
     });
 
     loadData.ref('overview').once('value').then(function(snapshot) {
@@ -76,7 +78,9 @@ for(i=0; i<12; i++){
             var childData = childSnapshot.val();
             overviewKeyArray.push(overviewkey);
             console.log("overviewkeyarray =", overviewKeyArray);
+            
         });
+        loadData.ref('KEYoverviewkeyarray').push(overviewKeyArray);
     });
 
     loadData.ref('image').once('value').then(function(snapshot) {
@@ -85,7 +89,9 @@ for(i=0; i<12; i++){
             var childData = childSnapshot.val();
             imageKeyArray.push(imagekey);
             console.log("imagekeyarray =", imageKeyArray);
+            
         });
+        loadData.ref('KEYimagekeyarray').push(imageKeyArray);
     });
 
 
@@ -266,18 +272,18 @@ if (e.which == 13) { // When enter is pressed fire function
 // Event Listener for Card buttons link to page 3
     $('.cardbtn').on('click', function(){
         loadData.ref('cardvalue').remove();
-        
         var cardVal = $(this).data("index");
         loadData.ref('cardvalue').push(cardVal);
-
         console.log('VALUE=' + cardVal);
     
+        
+
+
+
+
+
+
         location.href='./more-info.html';
-
-
-
-
-
 
     });
 
