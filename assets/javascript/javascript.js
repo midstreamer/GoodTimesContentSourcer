@@ -97,7 +97,7 @@ for(i=0; i<12; i++){
             var titlekey = childSnapshot.key;
             var childData = childSnapshot.val();
             titlekeyArray.push(titlekey);
-            console.log(titlekeyArray);
+            console.log("titlekeyarray =", titlekeyArray);
         });
     });
 
@@ -106,7 +106,7 @@ for(i=0; i<12; i++){
             var overviewkey = childSnapshot.key;
             var childData = childSnapshot.val();
             overviewKeyArray.push(overviewkey);
-            console.log(overviewKeyArray);
+            console.log("overviewkeyarray =", overviewKeyArray);
         });
     });
 
@@ -115,7 +115,7 @@ for(i=0; i<12; i++){
             var imagekey = childSnapshot.key;
             var childData = childSnapshot.val();
             imageKeyArray.push(imagekey);
-            console.log(imageKeyArray);
+            console.log("imagekeyarray =", imageKeyArray);
         });
     });
 
