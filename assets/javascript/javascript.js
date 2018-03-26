@@ -1,25 +1,3 @@
-// pseudocode
-// page 1
-
-// A.user input for keyword search(TOMD AJAX) 
-// search bar (default= Title order by popularity on search)
-// 1. event listener for user input (input validation)
-//Event listener
-// var contentIndex = 0;
-// var queryInput = "";
-// $("#search").keypress(function(e) {
-//     if (e.which == 13) {
-//         event.preventDefault();
-//         queryInput = $("#search").val().trim();
-//         console.log(queryInput);
-//         $("#search").val('');
-//         contentIndex = 0;
-
-
-// Ajax parameter (q=) variable 
-// 2. (a)store user input in varaiable.
-//    (b)send search term to database
-
 $(document).ready(function() {
 
 var titlekeyArray = [];
@@ -79,17 +57,8 @@ for(i=0; i<12; i++){
         loadData.ref('overview').push(defaultInfo.overview);
         loadData.ref('image').push("http://image.tmdb.org/t/p/w200" + defaultInfo.poster_path);
 
-    //    loadData.ref('title').once("value").then(function(snapshot){
-            
-    //     snapshot.forEach(function)
-    //        var key = snapshot.val();
-    //        console.log("Key = "+key)
-    //         keyArray.push(key);
-    //         console.log("keyarray = "+keyArray)
-    //    }) 
-
         contentIndex++;
-        // console.log(topTwelve);
+
     };
     
     loadData.ref('title').once('value').then(function(snapshot) {
@@ -121,8 +90,6 @@ for(i=0; i<12; i++){
 
 
         })
-
-
 
 //AJAX call for genreData
 var genreURL = 'https://api.themoviedb.org/3/genre/movie/list?api_key=6bb0a75f85c928245a8216e455d2280b&language=en-US';
@@ -297,11 +264,14 @@ if (e.which == 13) { // When enter is pressed fire function
 });
 
 // Event Listener for Card buttons link to page 3
-    $('#btn'+contentIndex).on('click', function(){
-        location.href='./more-info.html';
+    $('.cardbtn').on('click', function(){
+        // location.href='./more-info.html';
 
+        var cardVal = $(this).val();
+
+        console.log('VALUE=' + cardVal);
         
-
+        
 
 
 
