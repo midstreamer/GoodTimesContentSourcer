@@ -31,7 +31,7 @@ nav .input-field {
 
 #welcome {
     text-align: center;
-    background-image: url(../images/MillennialsSittingcopy.jpg);
+    background-image: url(../images/MillennialsSitting.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center top;
@@ -146,4 +146,16 @@ nav .brand-logo.right{
 .filterClose {
     margin-left: 50%;
     cursor: pointer;
+}
+
+ul {
+    display: inline-flex;
+}
+
+li {
+    margin-left: 80px;
+}
+
+h5 {
+    text-align: center;
 }
