@@ -203,6 +203,58 @@ var url = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
     }); 
 });
 
+//POPULATE DATE
+var datekeyArray;  
+    var dateIndex;   
+    loadData.ref('KEYdatekeyarray').once('value').then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            datekeyArray = childSnapshot.val();
+            console.log("datekeyarray: "+datekeyArray);
+            dateIndex = datekeyArray[cardval];
+            console.log("dateindex= "+dateIndex)
+        })    
+        });
+
+    var dateOfInterest;
+    var rootRef = firebase.database().ref();
+    var urlRef = rootRef.child("date");
+    urlRef.once("value", function(snapshot) {
+    snapshot.forEach(function(child) {
+    if (child.key === dateIndex) {
+    dateOfInterest = child.val();
+    console.log(dateOfInterest);
+    console.log(typeof dateOfInterest)
+    $("#date-p").text(dateOfInterest);
+    }
+    }); 
+});
+
+//POPULATE VOTE
+var votekeyArray;  
+    var voteIndex;   
+    loadData.ref('KEYvotekeyarray').once('value').then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            votekeyArray = childSnapshot.val();
+            console.log("votekeyarray: "+votekeyArray);
+            voteIndex = votekeyArray[cardval];
+            console.log("voteindex= "+voteIndex)
+        })    
+        });
+
+    var voteOfInterest;
+    var rootRef = firebase.database().ref();
+    var urlRef = rootRef.child("vote");
+    urlRef.once("value", function(snapshot) {
+    snapshot.forEach(function(child) {
+    if (child.key === voteIndex) {
+    voteOfInterest = child.val();
+    console.log(voteOfInterest);
+    console.log(typeof voteOfInterest)
+    $("#vote-p").text(voteOfInterest);
+    }
+    }); 
+});
+
 
 
 });

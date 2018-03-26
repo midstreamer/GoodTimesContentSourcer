@@ -3,6 +3,9 @@ $(document).ready(function() {
 var titlekeyArray = [];
 var overviewKeyArray = [];
 var imageKeyArray = [];
+var dateKeyArray = [];
+var voteKeyArray = [];
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyDroCpq4OgkTGdZARAsbG_Tt7xdHdu6Xyw",
@@ -24,9 +27,12 @@ $('select').formSelect();
 loadData.ref('title').remove();
 loadData.ref('overview').remove();
 loadData.ref('image').remove();
+loadData.ref('date').remove();
 loadData.ref('KEYtitlekeyarray').remove();
 loadData.ref('KEYoverviewkeyarray').remove();
 loadData.ref('KEYimagekeyarray').remove();
+loadData.ref('KEYdatekeyarray').remove();
+loadData.ref('KEYvotekeyarray').remove();
 
 // AJAX call for default TMDB search items
 
@@ -60,6 +66,8 @@ for(i=0; i<12; i++){
         loadData.ref('title').push(defaultInfo.title);
         loadData.ref('overview').push(defaultInfo.overview);
         loadData.ref('image').push("http://image.tmdb.org/t/p/w500" + defaultInfo.poster_path);
+        loadData.ref('date').push(res.results[i].release_date);
+        loadData.ref('vote').push(res.results[i].vote_average);
 
         contentIndex++;
 
@@ -97,6 +105,28 @@ for(i=0; i<12; i++){
             
         });
         loadData.ref('KEYimagekeyarray').push(imageKeyArray);
+    });
+
+    loadData.ref('date').once('value').then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            var datekey = childSnapshot.key;
+            var childData = childSnapshot.val();
+            dateKeyArray.push(datekey);
+            console.log("datekeyarray =", dateKeyArray);
+            
+        });
+        loadData.ref('KEYdatekeyarray').push(dateKeyArray);
+    });
+
+    loadData.ref('vote').once('value').then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            var votekey = childSnapshot.key;
+            var childData = childSnapshot.val();
+            voteKeyArray.push(votekey);
+            console.log("votekeyarray =", voteKeyArray);
+            
+        });
+        loadData.ref('KEYvotekeyarray').push(voteKeyArray);
     });
 
 
@@ -145,6 +175,8 @@ if (e.which == 13) { // When enter is pressed fire function
     loadData.ref('title').remove();
     loadData.ref('overview').remove();
     loadData.ref('image').remove();
+    loadData.ref('date').remove();
+    loadData.ref('vote').remove();
 
         var dFromVal = $('#dateFromSelect').val();
         var dToVal = $('#dateToSelect').val();
@@ -255,6 +287,7 @@ if (e.which == 13) { // When enter is pressed fire function
                 loadData.ref('title').push(res.results[i].title);
                 loadData.ref('overview').push(res.results[i].overview);
                 loadData.ref('image').push("http://image.tmdb.org/t/p/w200" + res.results[i].poster_path);
+                loadData.ref('date').push(res.results[i].release_date);
                 //increase the content index for next iteration
                 contentIndex++;
                 console.log("5. contentindex: "+contentIndex)    
