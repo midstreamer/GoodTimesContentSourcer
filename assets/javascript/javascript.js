@@ -189,6 +189,11 @@ if (e.which == 13) { // When enter is pressed fire function
     loadData.ref('overview').remove();
     loadData.ref('image').remove();
     loadData.ref('date').remove();
+    loadData.ref('KEYtitlekeyarray').remove();
+    loadData.ref('KEYoverviewkeyarray').remove();
+    loadData.ref('KEYimagekeyarray').remove();
+    loadData.ref('KEYdatekeyarray').remove();
+    loadData.ref('KEYvotekeyarray').remove();
     loadData.ref('searchTitle').remove();
     loadData.ref('searchOverview').remove();
     loadData.ref('searchImage').remove();
