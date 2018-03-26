@@ -218,7 +218,7 @@ var url = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
                     var URL = "https://www.googleapis.com/youtube/v3/search?"
     var part = "&part=snippet&q=" //snippet is the default setting, but it gives us the information that we looking for 
     var trailers = "trailers"
-    var q = titleOfInterest +" "+ trailers //searching for music, we will change this with the uer input below
+    var q = searchtitleOfInterest +" "+ trailers //searching for music, we will change this with the uer input below
     var results = "&maxResults=5" //results can be 0 to 50 
     var order = "&order=relevance" //listed in order of relevance 
     var type = "&type=video"  //this has to be (channel, playlist, or video)
