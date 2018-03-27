@@ -72,7 +72,7 @@ var url = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
                  url: url,
                  method: 'GET',
              })
-                                 // We store all of the retrieved data inside of an object called "response"
+                                 // We store all of the retrieved data inside of an object called "result"
                  .then(function (result) {
                                  // Log the resulting object
                      console.log("i am result", result);
@@ -81,6 +81,10 @@ var url = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
                          $("#NytTitle"+contentIndex+"").html(result.results[i].headline);
                                  // $(".title").text("Title: " + result.results[0].headline);
                          $("#NytContent"+contentIndex+"").html(result.results[i].summary_short);
+
+                         console.log(result.results[i].link.url)
+
+                         $('#NYTbtn').attr('href', result.results[i].link.url);
 
                                  // return the default library picture if no multimedia exists in JSON object
                          if (result.results[i].multimedia === null) {
@@ -198,6 +202,11 @@ var url = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
                          $("#NytTitle"+contentIndex+"").html(result.results[i].headline);
                                  // $(".title").text("Title: " + result.results[0].headline);
                          $("#NytContent"+contentIndex+"").html(result.results[i].summary_short);
+
+                         console.log(result.results[i].link.url)
+
+                         $('#NYTbtn').attr('href', result.results[i].link.url);
+
 
                                  // return the default library picture if no multimedia exists in JSON object
                          if (result.results[i].multimedia === null) {
