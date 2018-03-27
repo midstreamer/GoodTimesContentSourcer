@@ -3,7 +3,8 @@
 
 Good Times' Content Sourcer is a media aggregation service tailored for movies. GTCS allows users to streamline their movie search through a filtered keyword search.
 
-    : The search loads data from The Online Movie Database Discover/Search API in order of popularity, and can also be filtered by genre and/or date.
+    : The search loads data from The Online Movie Database Discover/Search API in order of popularity, 
+    : and can also be filtered by genre and/or date.
 
     : The website also loads data from the New York Times' Movie Review API and YouTube Data API.
 
